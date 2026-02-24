@@ -52,7 +52,7 @@ class Appointments extends Component{
 }
 
 fetchBlockedDates = async () => {
-  const response = await fetch(`http://localhost:3000/api/clinic/blocked-dates?clinic_id=${clinicId}`)
+  const response = await fetch(`https://clinora-backend.onrender.com/api/clinic/blocked-dates?clinic_id=${clinicId}`)
   const data = await response.json()
 
   this.setState({
@@ -62,7 +62,7 @@ fetchBlockedDates = async () => {
 
 onCancel=async (id)=>{
   console.log("clicked")
-const url=`http://localhost:3000/api/appointments/cancel/${id}?clinic_id=${clinicId}`
+const url=`https://clinora-backend.onrender.com/api/appointments/cancel/${id}?clinic_id=${clinicId}`
         const options={
             method:"PUT"
          }
@@ -72,7 +72,7 @@ const url=`http://localhost:3000/api/appointments/cancel/${id}?clinic_id=${clini
 
 getallApp=async ()=>{
   console.log("entered allapp")
-  const url=`http://localhost:3000/api/appointments/all?clinic_id=${clinicId}`
+  const url=`https://clinora-backend.onrender.com/api/appointments/all?clinic_id=${clinicId}`
   const options={method:"GET"}
   const response=await fetch(url,options)
   console.log(response)
@@ -89,11 +89,11 @@ toggleDate = async (date) => {
   const isBlocked = this.state.blockedDates.includes(date)
 
   if (isBlocked) {
-    await fetch(`http://localhost:3000/api/clinic/unblock-date/${date}?clinic_id=${clinicId}`, {
+    await fetch(`https://clinora-backend.onrender.com/api/clinic/unblock-date/${date}?clinic_id=${clinicId}`, {
       method: "DELETE"
     })
   } else {
-    await fetch(`http://localhost:3000/api/clinic/block-date?clinic_id=${clinicId}`, {
+    await fetch(`https://clinora-backend.onrender.com/api/clinic/block-date?clinic_id=${clinicId}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ date })
@@ -107,7 +107,7 @@ handleLogout = () => {
   window.location.href = "/"
 }
     onComplete=async (id)=>{
-        const url=`http://localhost:3000/api/appointments/${id}/complete?clinic_id=${clinicId}`
+        const url=`https://clinora-backend.onrender.com/api/appointments/${id}/complete?clinic_id=${clinicId}`
         const options={
             method:"PUT"
          }
@@ -116,7 +116,7 @@ handleLogout = () => {
     }
     getAppointment=async ()=>{
         const {statusId,selectedDate}=this.state
-         const url=`http://localhost:3000/api/appointments/${statusId}?date=${selectedDate}&clinic_id=${clinicId}`
+         const url=`https://clinora-backend.onrender.com/api/appointments/${statusId}?date=${selectedDate}&clinic_id=${clinicId}`
          const options={
             method:"GET"
          }
