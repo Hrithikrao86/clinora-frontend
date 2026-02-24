@@ -1,0 +1,18 @@
+
+.dateBtn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.activeDate {
+  background-color: #0F172A;
+  color: white;
+  border: none;
+}
+.dateBtn:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}

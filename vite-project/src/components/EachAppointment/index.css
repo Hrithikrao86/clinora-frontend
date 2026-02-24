@@ -1,0 +1,187 @@
+.appointmentTab {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  width: 320px;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+  border: 1px solid #E5E7EB;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 12px;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cancel-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #ef4444;
+  background: transparent;
+  color: #ef4444;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background: #fee2e2;
+}
+
+.number{
+    font-size: 14px;
+    font-family: "Roboto";
+}
+.app_date{
+    font-family: "Roboto";
+    font-weight: 500;
+}
+.booked{
+    font-family: "Roboto";
+    font-weight: 500;
+    color: gold;
+}
+.notbooked{
+    font-family: "Roboto";
+    font-weight: 500;
+    color: lightcoral;
+}
+.completebtn{
+    background-color: green;
+    border: none;
+    border-radius: 10px;
+    width: 120px;
+    font-family: "Roboto";
+    font-size: 10px;
+    color: white;
+    padding: 10px;
+}
+.notcomplete{
+    background-color: transparent;
+    border-color: green;
+    color: green;
+    border-radius: 10px;
+    width: 120px;
+    font-family: "Roboto";
+    font-size: 10px;
+    border-width: 1px;
+    padding: 10px;
+}
+
+.patient-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.patient-phone {
+  font-size: 13px;
+  color: #555;
+  margin-top: 2px;
+}
+
+/* Status badge */
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.booked {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.status-badge.completed {
+  background: #DCFCE7;
+  color: #166534;
+}
+
+.status-badge.cancelled {
+  background: #FEE2E2;
+  color: #991B1B;
+}
+
+/* Body */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #333;
+}
+
+.department {
+  font-size: 14px;
+  font-weight: 500;
+  color: #0b6e4f;
+}
+
+/* Footer */
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+/* Button */
+.action-btn {
+  background: #0F172A;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  font-size: 13px;
+  border-radius: 10px;
+  transition: 0.25s ease;
+}
+
+.action-btn:hover {
+  background: #1E293B;
+}
+
+.action-btn:hover {
+  background: linear-gradient(135deg, #1b5e20, #2e7d32);
+  transform: translateY(-1px);
+}
+
+
+.action-btn:active {
+  transform: scale(0.97);
+}
+
+.action-btn:focus {
+  outline: none;
+}
+.cancel-btn {
+  background: transparent;
+  color: #d32f2f;
+  border: 1.5px solid #ef9a9a;
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.cancel-btn:hover {
+  background-color: rgba(211, 47, 47, 0.08);
+  border-color: #d32f2f;
+}
+
+.cancel-btn:active {
+  transform: scale(0.97);
+}
+
+.cancel-btn:focus {
+  outline: none;
+}
