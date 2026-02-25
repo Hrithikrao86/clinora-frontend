@@ -34,7 +34,7 @@ class Login extends Component {
 
     if (response.ok) {
       localStorage.setItem("clinic_id", data.clinic_id)
-      localStorage.setItem("isLoggedIn", "true")
+      localStorage.setItem("token", data.token)
 
       window.location.href = "/dashboard"
     } else {

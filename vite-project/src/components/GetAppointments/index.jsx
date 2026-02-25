@@ -38,7 +38,9 @@ const statusList=[{statusId:"BOOKED",statusLang:"Booked"},
     {statusId:"CANCELLED",statusLang:"Cancelled"},
     {statusId:"COMPLETED",statusLang:"Completed"}]
 
-const clinicId=localStorage.getItem("clinic_id")
+
+
+
 class Appointments extends Component{
     state={appointmentList:[],statusId:statusList[0].statusId,selectedDate: new Date().toISOString().split("T")[0],totalApp:[],blockedDates:[]}
 
@@ -52,7 +54,12 @@ class Appointments extends Component{
 }
 
 fetchBlockedDates = async () => {
-  const response = await fetch(`https://clinora-backend.onrender.com/api/clinic/blocked-dates?clinic_id=${clinicId}`)
+  const token = localStorage.getItem("token")
+  const response = await fetch(`https://clinora-backend.onrender.com/api/clinic/blocked-dates`,{
+    headers:{
+      Authorization:`Bearer ${token}`
+    }
+  })
   const data = await response.json()
 
   this.setState({
@@ -61,19 +68,27 @@ fetchBlockedDates = async () => {
 }
 
 onCancel=async (id)=>{
+  const token = localStorage.getItem("token")
   console.log("clicked")
-const url=`https://clinora-backend.onrender.com/api/appointments/cancel/${id}?clinic_id=${clinicId}`
+const url=`https://clinora-backend.onrender.com/api/appointments/cancel/${id}`
+
         const options={
-            method:"PUT"
+            method:"PUT",
+            headers:{
+      Authorization:`Bearer ${token}`
+    }
          }
         const response=await fetch(url,options)
         console.log(response)
 }
 
 getallApp=async ()=>{
+  const token = localStorage.getItem("token")
   console.log("entered allapp")
-  const url=`https://clinora-backend.onrender.com/api/appointments/all?clinic_id=${clinicId}`
-  const options={method:"GET"}
+  const url=`https://clinora-backend.onrender.com/api/appointments/all`
+  const options={method:"GET",headers:{
+      Authorization:`Bearer ${token}`
+    }}
   const response=await fetch(url,options)
   console.log(response)
   if (response.ok){
@@ -86,16 +101,20 @@ getallApp=async ()=>{
 }
 
 toggleDate = async (date) => {
+  const token = localStorage.getItem("token")
   const isBlocked = this.state.blockedDates.includes(date)
 
   if (isBlocked) {
-    await fetch(`https://clinora-backend.onrender.com/api/clinic/unblock-date/${date}?clinic_id=${clinicId}`, {
-      method: "DELETE"
+    await fetch(`https://clinora-backend.onrender.com/api/clinic/unblock-date/${date}`, {
+      method: "DELETE",
+      headers:{
+      Authorization:`Bearer ${token}`
+    }
     })
   } else {
-    await fetch(`https://clinora-backend.onrender.com/api/clinic/block-date?clinic_id=${clinicId}`, {
+    await fetch(`https://clinora-backend.onrender.com/api/clinic/block-date}`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json",  Authorization:`Bearer ${token}` },
       body: JSON.stringify({ date })
     })
   }
@@ -103,22 +122,31 @@ toggleDate = async (date) => {
   this.fetchBlockedDates()
 }
 handleLogout = () => {
+  const token = localStorage.getItem("token")
   localStorage.removeItem("isLoggedIn")
   window.location.href = "/"
 }
     onComplete=async (id)=>{
-        const url=`https://clinora-backend.onrender.com/api/appointments/${id}/complete?clinic_id=${clinicId}`
+      const token = localStorage.getItem("token")
+        const url=`https://clinora-backend.onrender.com/api/appointments/${id}/complete`
         const options={
-            method:"PUT"
+            method:"PUT",
+            headers:{
+      Authorization:`Bearer ${token}`
+    }
          }
         const response=await fetch(url,options)
         console.log(response)
     }
     getAppointment=async ()=>{
+      const token = localStorage.getItem("token")
         const {statusId,selectedDate}=this.state
-         const url=`https://clinora-backend.onrender.com/api/appointments/${statusId}?date=${selectedDate}&clinic_id=${clinicId}`
+         const url=`https://clinora-backend.onrender.com/api/appointments/${statusId}?date=${selectedDate}`
          const options={
-            method:"GET"
+            method:"GET",
+            headers:{
+      Authorization:`Bearer ${token}`
+    }
          }
         const response=await fetch(url,options)
         if (response.ok){
