@@ -112,7 +112,7 @@ toggleDate = async (date) => {
     }
     })
   } else {
-    await fetch(`https://clinora-backend.onrender.com/api/clinic/block-date}`, {
+    await fetch(`https://clinora-backend.onrender.com/api/clinic/block-date`, {
       method: "POST",
       headers: { "Content-Type": "application/json",  Authorization:`Bearer ${token}` },
       body: JSON.stringify({ date })
@@ -122,8 +122,8 @@ toggleDate = async (date) => {
   this.fetchBlockedDates()
 }
 handleLogout = () => {
-  const token = localStorage.getItem("token")
-  localStorage.removeItem("isLoggedIn")
+  
+  localStorage.removeItem("token")
   window.location.href = "/"
 }
     onComplete=async (id)=>{
@@ -161,8 +161,8 @@ handleLogout = () => {
         }
     componentDidMount(){
 
-        const isLoggedIn = localStorage.getItem("isLoggedIn")
-  if (!isLoggedIn) {
+        const token = localStorage.getItem("token")
+  if (!token) {
     window.location = "/"
   }
 this.getAppointment()
@@ -245,12 +245,7 @@ this.interval=setInterval(() => {
             </ul>)}  
         </div>
     </div>
-        
-        
-        
-        
-        
-       )
+  )
     }
     }
 

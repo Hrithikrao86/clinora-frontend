@@ -33,10 +33,8 @@ class Login extends Component {
     const data = await response.json()
 
     if (response.ok) {
-      localStorage.setItem("clinic_id", data.clinic_id)
       localStorage.setItem("token", data.token)
-
-      window.location.href = "/dashboard"
+window.location.href = "/dashboard"
     } else {
       this.setState({ error: data.error || "Invalid credentials" })
     }
