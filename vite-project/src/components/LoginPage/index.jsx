@@ -9,17 +9,26 @@ class Login extends Component {
     error: "",
     redirect: false
   }
+ 
 
   handleLogin = async () => {
   const { username, password } = this.state
   const cleanedUsername=username.trim()
   const cleanedPassword=password.trim()
   try {
-    const response = await fetch("https://clinora-backend.onrender.com/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username:cleanedUsername, password:cleanedPassword })
+    const response = await fetch(
+  "https://clinora-backend.onrender.com/api/login",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      username: cleanedUsername,
+      password: cleanedPassword
     })
+  }
+)
 
     const data = await response.json()
 
