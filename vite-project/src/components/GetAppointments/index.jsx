@@ -84,6 +84,10 @@ const url=`https://clinora-backend.onrender.com/api/appointments/cancel/${id}`
 
 getallApp=async ()=>{
   const token = localStorage.getItem("token")
+
+const payload = JSON.parse(atob(token.split(".")[1]))
+
+console.log(payload)
   console.log("entered allapp")
   const url=`https://clinora-backend.onrender.com/api/appointments/all`
   const options={method:"GET",headers:{
