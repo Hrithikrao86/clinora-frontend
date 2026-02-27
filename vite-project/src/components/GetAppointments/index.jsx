@@ -82,26 +82,24 @@ const url=`https://clinora-backend.onrender.com/api/appointments/cancel/${id}`
         console.log(response)
 }
 
-getallApp=async ()=>{
+getallApp = async () => {
   const token = localStorage.getItem("token")
 
-const payload = JSON.parse(atob(token.split(".")[1]))
+  const response = await fetch(
+    "https://clinora-backend.onrender.com/api/appointments/all",
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  )
 
-console.log("This is payload:",payload)
-  console.log("entered allapp")
-  const url=`https://clinora-backend.onrender.com/api/appointments/all`
-  const options={method:"GET",headers:{
-      Authorization:`Bearer ${token}`
-    }}
-  const response=await fetch(url,options)
-  console.log(response)
-  if (response.ok){
-    
-    const data=await response.json()
-    console.log(data)
-    this.setState({totalApp:data})
+  const data = await response.json()
 
-  }
+  console.log("🔥 TOTAL APP API RESPONSE:", data)
+
+  this.setState({ totalApp: data })
 }
 
 toggleDate = async (date) => {
