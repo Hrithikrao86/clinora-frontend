@@ -36,13 +36,12 @@ class Profile extends Component {
     const data = await response.json()
 
     if (response.ok) {
-      this.setState({
-        message: "Password updated successfully",
-        error: "",
-        oldPassword: "",
-        newPassword: ""
-      })
-    } else {
+  alert("Password updated successfully. Please login again.")
+
+  localStorage.removeItem("token")
+
+  window.location.href = "/"
+} else {
       this.setState({
         error: data.error || "Something went wrong",
         message: ""
