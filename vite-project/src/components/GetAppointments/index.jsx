@@ -43,9 +43,14 @@ const statusList=[{statusId:"BOOKED",statusLang:"Booked"},
 
 
 class Appointments extends Component{
-    state={appointmentList:[],statusId:statusList[0].statusId,selectedDate: new Date().toLocaleDateString("en-CA"),totalApp:[],blockedDates:[],clinicName:""}
+    state={appointmentList:[],statusId:statusList[0].statusId,selectedDate: new Date().toLocaleDateString("en-CA"),totalApp:[],blockedDates:[],clinicName:"",showProfile: false,
+oldPassword: "",
+newPassword: ""}
 
 
+toggleProfile = () => {
+  this.setState(prev => ({ showProfile: !prev.showProfile }))
+}
 
     updateId=(id)=>{
      this.setState({statusId:id},this.getAppointment)
@@ -80,9 +85,41 @@ fetchClinicInfo = async () => {
     }
   )
 
+
   if (response.ok) {
     const data = await response.json()
     this.setState({ clinicName: data.name })
+  }
+}
+
+handlePasswordChange = async () => {
+  const token = localStorage.getItem("token")
+
+  const { oldPassword, newPassword } = this.state
+
+  const response = await fetch(
+    "https://clinora-backend.onrender.com/api/clinic/change-password",
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({ oldPassword, newPassword })
+    }
+  )
+
+  const data = await response.json()
+
+  if (response.ok) {
+    alert("Password updated successfully")
+    this.setState({
+      oldPassword: "",
+      newPassword: "",
+      showProfile: false
+    })
+  } else {
+    alert(data.error)
   }
 }
 
@@ -225,14 +262,38 @@ this.interval=setInterval(() => {
   <img src="https://image2url.com/r2/default/images/1771932757551-0110636d-ee4f-4cd2-838e-3fddff9323ec.png" alt="clinora logo" className="smallLogo"/>
 
 
-  <button className="logout-btn" onClick={this.handleLogout}>
-    Logout
-  </button>
+  <button onClick={this.toggleProfile}>Profile</button>
+<button className="logout-btn" onClick={this.handleLogout}>
+  Logout
+</button>
 </div>
 
   
 </div>
 
+{this.state.showProfile && (
+  <div className="profile-panel">
+    <h3>Change Password</h3>
+
+    <input
+      type="password"
+      placeholder="Old Password"
+      value={this.state.oldPassword}
+      onChange={e => this.setState({ oldPassword: e.target.value })}
+    />
+
+    <input
+      type="password"
+      placeholder="New Password"
+      value={this.state.newPassword}
+      onChange={e => this.setState({ newPassword: e.target.value })}
+    />
+
+    <button onClick={this.handlePasswordChange}>
+      Update Password
+    </button>
+  </div>
+)}
       
       <div className="maincontainer1">
           <GetTotalApp appointmentList={totalApp}/>
