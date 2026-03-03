@@ -43,14 +43,10 @@ const statusList=[{statusId:"BOOKED",statusLang:"Booked"},
 
 
 class Appointments extends Component{
-    state={appointmentList:[],statusId:statusList[0].statusId,selectedDate: new Date().toLocaleDateString("en-CA"),totalApp:[],blockedDates:[],clinicName:"",showProfile: false,
-oldPassword: "",
-newPassword: ""}
+    state={appointmentList:[],statusId:statusList[0].statusId,selectedDate: new Date().toLocaleDateString("en-CA"),totalApp:[],blockedDates:[],clinicName:""
 
+    }
 
-toggleProfile = () => {
-  this.setState(prev => ({ showProfile: !prev.showProfile }))
-}
 
     updateId=(id)=>{
      this.setState({statusId:id},this.getAppointment)
@@ -262,7 +258,9 @@ this.interval=setInterval(() => {
   <img src="https://image2url.com/r2/default/images/1771932757551-0110636d-ee4f-4cd2-838e-3fddff9323ec.png" alt="clinora logo" className="smallLogo"/>
 
 
-  <button onClick={this.toggleProfile}>Profile</button>
+  <button onClick={() => window.location.href="/profile"}>
+  Profile
+</button>
 <button className="logout-btn" onClick={this.handleLogout}>
   Logout
 </button>
