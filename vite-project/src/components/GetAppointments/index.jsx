@@ -43,7 +43,7 @@ const statusList=[{statusId:"BOOKED",statusLang:"Booked"},
 
 
 class Appointments extends Component{
-    state={appointmentList:[],statusId:statusList[0].statusId,selectedDate: new Date().toLocaleDateString("en-CA"),totalApp:[],blockedDates:[]}
+    state={appointmentList:[],statusId:statusList[0].statusId,selectedDate: new Date().toLocaleDateString("en-CA"),totalApp:[],blockedDates:[],clinicName:""}
 
 
 
@@ -66,6 +66,24 @@ fetchBlockedDates = async () => {
   this.setState({
     blockedDates: data.map(d => d.blocked_date)
   })
+}
+
+fetchClinicInfo = async () => {
+  const token = localStorage.getItem("token")
+
+  const response = await fetch(
+    "https://clinora-backend.onrender.com/api/me",
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  )
+
+  if (response.ok) {
+    const data = await response.json()
+    this.setState({ clinicName: data.name })
+  }
 }
 
 onCancel = async (id) => {
@@ -174,6 +192,7 @@ handleLogout = () => {
 this.getAppointment()
 this.getallApp()
 this.fetchBlockedDates()
+this.fetchClinicInfo()
 
 this.interval=setInterval(() => {
     this.getAppointment();
@@ -199,7 +218,7 @@ this.interval=setInterval(() => {
         <div className='maincontainer'>
       <div className="hero">
   <div className="hero-text">
-    <h1>Hello <span>Life Line,</span></h1>
+    <h1>Hello <span>{this.state.clinicName},</span></h1>
     <p>Manage today’s and upcoming appointments easily</p>
   </div>
 <div className="header-actions">
