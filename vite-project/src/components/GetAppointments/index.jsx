@@ -12,6 +12,7 @@ import { faHospital } from "@fortawesome/free-solid-svg-icons"
 const getNext7Days = () => {
   const days = []
   const today = new Date()
+const iso = today.toLocaleDateString("en-CA")
 
   for (let i = 0; i < 7; i++) {
     const d = new Date(today)
@@ -27,7 +28,7 @@ const getNext7Days = () => {
               day: "2-digit",
               month: "short",
             }),
-      value: d.toISOString().split("T")[0],
+      value: d.toLocaleDateString("en-CA"),
     })
   }
 
@@ -42,7 +43,7 @@ const statusList=[{statusId:"BOOKED",statusLang:"Booked"},
 
 
 class Appointments extends Component{
-    state={appointmentList:[],statusId:statusList[0].statusId,selectedDate: new Date().toISOString().split("T")[0],totalApp:[],blockedDates:[]}
+    state={appointmentList:[],statusId:statusList[0].statusId,selectedDate: new Date().toLocaleDateString("en-CA"),totalApp:[],blockedDates:[]}
 
 
 
@@ -67,21 +68,24 @@ fetchBlockedDates = async () => {
   })
 }
 
-onCancel=async (id)=>{
+onCancel = async (id) => {
   const token = localStorage.getItem("token")
-  console.log("clicked")
-const url=`https://clinora-backend.onrender.com/api/appointments/cancel/${id}`
 
-        const options={
-            method:"PUT",
-            headers:{
-      Authorization:`Bearer ${token}`
+  const response = await fetch(
+    `https://clinora-backend.onrender.com/api/appointments/cancel/${id}`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     }
-         }
-        const response=await fetch(url,options)
-        console.log(response)
-}
+  )
 
+  if (response.ok) {
+    this.getAppointment()
+    this.getallApp()
+  }
+}
 getallApp = async () => {
   const token = localStorage.getItem("token")
 
