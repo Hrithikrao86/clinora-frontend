@@ -1,4 +1,5 @@
-import {Component} from "react"
+import "./index.css"
+import { Component } from "react"
 
 class Settings extends Component {
 
@@ -31,25 +32,33 @@ render(){
 
 return(
 
-<div className="settingsContainer">
+<div className="settings-page">
 
-<h2>Settings</h2>
+<h1 className="settings-title">Settings</h1>
 
-<button onClick={this.goProfile}>
-Profile
-</button>
+<div className="settings-grid">
 
-<button onClick={this.goDoctors}>
-Manage Doctors
-</button>
+<div className="settings-card" onClick={this.goProfile}>
+<h3>Profile</h3>
+<p>View clinic information</p>
+</div>
 
-<button onClick={this.goPassword}>
-Change Password
-</button>
+<div className="settings-card" onClick={this.goDoctors}>
+<h3>Doctors</h3>
+<p>Manage clinic doctors</p>
+</div>
 
-<button onClick={this.logout}>
-Logout
-</button>
+<div className="settings-card" onClick={this.goPassword}>
+<h3>Security</h3>
+<p>Change account password</p>
+</div>
+
+<div className="settings-card logout" onClick={this.logout}>
+<h3>Logout</h3>
+<p>Sign out from dashboard</p>
+</div>
+
+</div>
 
 </div>
 
