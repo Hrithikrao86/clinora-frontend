@@ -265,11 +265,10 @@ this.interval=setInterval(() => {
   <img src="https://image2url.com/r2/default/images/1771932757551-0110636d-ee4f-4cd2-838e-3fddff9323ec.png" alt="clinora logo" className="smallLogo"/>
 
 
-  <button className="logout-btn" onClick={() => window.location.href="/profile"}>
-  Profile
-</button>
-<button className="logout-btn" onClick={this.handleLogout}>
-  Logout
+ <button className="logout-btn"
+onClick={()=>window.location.href="/settings"}
+>
+Settings
 </button>
 </div> 
 

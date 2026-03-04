@@ -4,9 +4,9 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Login from "./components/LoginPage"
-import Profile from "./components/Profile"
-
-
+import ChangePassword from './components/ChangePassword'
+import Doctors from './components/Doctors'
+import Settings from './components/Settings'
 import Appointments from "./components/GetAppointments"
 
 function App() {
@@ -15,8 +15,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/setings/password" element={<ChangePassword />} />
         <Route path="/dashboard" element={<Appointments />} />
+        <Route path="/settings/doctors" element={<Doctors/>}/>
+        <Route path="/settings" element={<Settings/>}/>
       </Routes>
     </BrowserRouter>
   )
