@@ -56,12 +56,11 @@ class Appointments extends Component{
 }
 
 fetchBlockedDates = async () => {
-  const token = localStorage.getItem("token")
+  
   const response = await fetch(`https://clinora-backend.onrender.com/api/clinic/blocked-dates`,{
-    headers:{
-      Authorization:`Bearer ${token}`
-    }
-  })
+    credentials: "include"
+  }
+)
   const data = await response.json()
 
   this.setState({
@@ -70,16 +69,15 @@ fetchBlockedDates = async () => {
 }
 
 fetchClinicInfo = async () => {
-  const token = localStorage.getItem("token")
+  
 
   const response = await fetch(
     "https://clinora-backend.onrender.com/api/me",
-    {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }
-  )
+   {
+    credentials: "include"
+  }
+)
+  
 
 
   if (response.ok) {
@@ -89,7 +87,7 @@ fetchClinicInfo = async () => {
 }
 
 handlePasswordChange = async () => {
-  const token = localStorage.getItem("token")
+  
 
   const { oldPassword, newPassword } = this.state
 
@@ -99,8 +97,9 @@ handlePasswordChange = async () => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
+        
       },
+      credentials: "include",
       body: JSON.stringify({ oldPassword, newPassword })
     }
   )
@@ -120,15 +119,13 @@ handlePasswordChange = async () => {
 }
 
 onCancel = async (id) => {
-  const token = localStorage.getItem("token")
+  
 
   const response = await fetch(
     `https://clinora-backend.onrender.com/api/appointments/cancel/${id}`,
     {
       method: "PUT",
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+     credentials: "include"
     }
   )
 
@@ -138,15 +135,13 @@ onCancel = async (id) => {
   }
 }
 getallApp = async () => {
-  const token = localStorage.getItem("token")
+  
 
   const response = await fetch(
     "https://clinora-backend.onrender.com/api/appointments/all",
     {
       method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+      credentials: "include"
     }
   )
 
@@ -158,52 +153,54 @@ getallApp = async () => {
 }
 
 toggleDate = async (date) => {
-  const token = localStorage.getItem("token")
+
   const isBlocked = this.state.blockedDates.includes(date)
 
   if (isBlocked) {
     await fetch(`https://clinora-backend.onrender.com/api/clinic/unblock-date/${date}`, {
       method: "DELETE",
-      headers:{
-      Authorization:`Bearer ${token}`
-    }
+      credentials: "include"
+      
     })
   } else {
     await fetch(`https://clinora-backend.onrender.com/api/clinic/block-date`, {
       method: "POST",
-      headers: { "Content-Type": "application/json",  Authorization:`Bearer ${token}` },
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
       body: JSON.stringify({ date })
     })
   }
 
   this.fetchBlockedDates()
 }
-handleLogout = () => {
-  
-  localStorage.removeItem("token")
+handleLogout = async () => {
+
+  await fetch(
+    "https://clinora-backend.onrender.com/api/logout",
+    {
+      method: "POST",
+      credentials: "include"
+    }
+  )
+
   window.location.href = "/"
 }
     onComplete=async (id)=>{
-      const token = localStorage.getItem("token")
+      
         const url=`https://clinora-backend.onrender.com/api/appointments/${id}/complete`
         const options={
             method:"PUT",
-            headers:{
-      Authorization:`Bearer ${token}`
-    }
+           credentials:"include",
          }
         const response=await fetch(url,options)
         console.log(response)
     }
     getAppointment=async ()=>{
-      const token = localStorage.getItem("token")
         const {statusId,selectedDate}=this.state
          const url=`https://clinora-backend.onrender.com/api/appointments/${statusId}?date=${selectedDate}`
          const options={
             method:"GET",
-            headers:{
-      Authorization:`Bearer ${token}`
-    }
+            credentials:"include",
          }
         const response=await fetch(url,options)
         if (response.ok){
@@ -216,12 +213,22 @@ handleLogout = () => {
             console.log("error in react")
         }
         }
-    componentDidMount(){
+        checkAuth = async () => {
+  const response = await fetch(
+    "https://clinora-backend.onrender.com/api/me",
+    {
+      credentials: "include"
+    }
+  )
 
-        const token = localStorage.getItem("token")
-  if (!token) {
+  if (!response.ok) {
     window.location = "/"
   }
+}
+    componentDidMount(){
+
+        this.checkAuth()
+  
 this.getAppointment()
 this.getallApp()
 this.fetchBlockedDates()
@@ -258,13 +265,13 @@ this.interval=setInterval(() => {
   <img src="https://image2url.com/r2/default/images/1771932757551-0110636d-ee4f-4cd2-838e-3fddff9323ec.png" alt="clinora logo" className="smallLogo"/>
 
 
-  <button onClick={() => window.location.href="/profile"}>
+  <button className="logout-btn" onClick={() => window.location.href="/profile"}>
   Profile
 </button>
 <button className="logout-btn" onClick={this.handleLogout}>
   Logout
 </button>
-</div>
+</div> 
 
   
 </div>

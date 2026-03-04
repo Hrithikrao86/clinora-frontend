@@ -11,38 +11,48 @@ class Login extends Component {
   }
  
 
-  handleLogin = async () => {
+handleLogin = async () => {
   const { username, password } = this.state
-  const cleanedUsername=username.trim()
-  const cleanedPassword=password.trim()
+
+  const cleanedUsername = username.trim()
+  const cleanedPassword = password.trim()
+
   try {
+
     const response = await fetch(
-  "https://clinora-backend.onrender.com/api/login",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      username: cleanedUsername,
-      password: cleanedPassword
-    })
-  }
-)
+      "https://clinora-backend.onrender.com/api/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include", // ⭐ IMPORTANT
+        body: JSON.stringify({
+          username: cleanedUsername,
+          password: cleanedPassword
+        })
+      }
+    )
 
     const data = await response.json()
 
     if (response.ok) {
-      localStorage.setItem("token", data.token)
-window.location.href = "/dashboard"
+
+      // cookie is automatically stored
+      window.location.href = "/dashboard"
+
     } else {
-      this.setState({ error: data.error || "Invalid credentials" })
+      this.setState({
+        error: data.error || "Invalid credentials"
+      })
     }
+
   } catch (error) {
-    this.setState({ error: "Server error. Try again." })
+    this.setState({
+      error: "Server error. Try again."
+    })
   }
 }
-
 
 
   render() {
