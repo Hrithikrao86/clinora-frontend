@@ -33,35 +33,56 @@ fetchDoctors = async () => {
 
 addDoctor = async () => {
 
-  const {name,department} = this.state
+  const { name, department } = this.state
 
-  const response = await fetch(
-    "https://clinora-backend.onrender.com/api/clinic/doctors",
-    {
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      credentials:"include",
-      body:JSON.stringify({
-        name,
-        department
+  console.log("Sending doctor:", name, department)
+
+  try {
+
+    const response = await fetch(
+      "https://clinora-backend.onrender.com/api/clinic/doctors",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          name,
+          department
+        })
+      }
+    )
+
+    console.log("Response received")
+
+    const data = await response.json()
+
+    console.log("Backend response:", data)
+
+    if (response.ok) {
+
+      this.setState({
+        name: "",
+        department: "",
+        showModal: false
       })
+
+      this.fetchDoctors()
+
+    } else {
+
+      alert(data.error || "Failed to add doctor")
+
     }
-  )
 
-  if(response.ok){
+  } catch (err) {
 
-    this.setState({
-      name:"",
-      department:"",
-      showModal:false
-    })
+    console.error("ERROR:", err)
+    alert("Server error")
 
-    this.fetchDoctors()
   }
 }
-
 deleteDoctor = async (id) => {
 
   await fetch(
