@@ -135,10 +135,10 @@ onCancel = async (id) => {
   }
 }
 getallApp = async () => {
-  
+  const {selectedDate}=this.state
 
   const response = await fetch(
-    "https://clinora-backend.onrender.com/api/appointments/all",
+    `https://clinora-backend.onrender.com/api/appointments/all?date=${selectedDate}`,
     {
       method: "GET",
       credentials: "include"
