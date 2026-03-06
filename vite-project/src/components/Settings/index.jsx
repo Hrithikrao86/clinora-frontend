@@ -14,7 +14,7 @@ goProfile = () => {
 }
 
 goClinic=()=>{
-   window.location.href="/settings/ClinicSettings"
+   window.location.href="/settings/clinic"
   }
 
 goDoctors = () => {
