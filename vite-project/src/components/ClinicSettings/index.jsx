@@ -13,7 +13,8 @@ class ClinicSettings extends Component {
   state = {
     start_time: "",
     end_time: "",
-    consultation_fee: ""
+    consultation_fee: "",
+    successMsg:""
   }
 
   componentDidMount() {
@@ -37,30 +38,39 @@ class ClinicSettings extends Component {
     }
   }
 
-  updateSettings = async () => {
+updateSettings = async () => {
 
-    const { start_time, end_time, consultation_fee } = this.state
+  const { start_time, end_time, consultation_fee } = this.state
 
-    const response = await fetch(
-      "https://clinora-backend.onrender.com/api/clinic/settings",
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          start_time,
-          end_time,
-          consultation_fee
-        })
-      }
-    )
-
-    if (response.ok) {
-      alert("Clinic settings updated successfully")
+  const response = await fetch(
+    "https://clinora-backend.onrender.com/api/clinic/settings",
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        start_time,
+        end_time,
+        consultation_fee
+      })
     }
+  )
+
+  if (response.ok) {
+
+    this.setState({
+      successMsg: "✅ Settings saved successfully"
+    })
+
+    setTimeout(() => {
+      this.setState({ successMsg: "" })
+    }, 3000)
+
   }
+
+}
 
   render() {
 
@@ -139,6 +149,13 @@ class ClinicSettings extends Component {
               <FaSave />
               Save Settings
             </button>
+            
+
+{this.state.successMsg && (
+  <p className="success-message">
+    {this.state.successMsg}
+  </p>
+)}
 
           </div>
 
