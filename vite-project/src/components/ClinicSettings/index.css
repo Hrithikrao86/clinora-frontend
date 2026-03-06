@@ -1,0 +1,182 @@
+/* PAGE BACKGROUND */
+
+.clinic-settings-page {
+
+  min-height: 100vh;
+
+  background: linear-gradient(
+    135deg,
+    #eef2ff,
+    #f8fafc
+  );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+}
+
+
+/* CONTAINER */
+
+.settings-container {
+
+  width: 520px;
+}
+
+
+/* HEADER */
+
+.settings-header {
+
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.settings-header h1 {
+
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.settings-header p {
+
+  color: #6b7280;
+  margin-top: 6px;
+}
+
+.settings-main-icon {
+
+  font-size: 32px;
+  color: #6366f1;
+  margin-bottom: 10px;
+}
+
+
+/* CARD */
+
+.settings-card {
+
+  background: white;
+
+  border-radius: 16px;
+
+  padding: 35px;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.08);
+
+  border: 1px solid #f1f5f9;
+}
+
+
+/* INPUT GROUP */
+
+.settings-group {
+
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 22px;
+}
+
+
+/* LABEL */
+
+.settings-group label {
+
+  font-size: 14px;
+  font-weight: 600;
+
+  margin-bottom: 8px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #374151;
+}
+
+
+/* INPUT */
+
+.settings-group input {
+
+  height: 44px;
+
+  border-radius: 10px;
+
+  border: 1px solid #e5e7eb;
+
+  padding: 0 14px;
+
+  font-size: 14px;
+
+  transition: all 0.25s ease;
+}
+
+
+/* INPUT FOCUS */
+
+.settings-group input:focus {
+
+  outline: none;
+
+  border-color: #6366f1;
+
+  box-shadow:
+    0 0 0 4px rgba(99,102,241,0.12);
+}
+
+
+/* BUTTON */
+
+.save-btn {
+
+  width: 100%;
+
+  height: 46px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: linear-gradient(
+    135deg,
+    #6366f1,
+    #4f46e5
+  );
+
+  color: white;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 8px;
+
+  transition: all 0.25s ease;
+}
+
+
+/* BUTTON HOVER */
+
+.save-btn:hover {
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(79,70,229,0.35);
+}
