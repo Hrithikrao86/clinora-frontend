@@ -5,12 +5,17 @@ import { FiUser } from "react-icons/fi"
 import { FiUsers } from "react-icons/fi"
 import { FiLock } from "react-icons/fi"
 import { FiLogOut } from "react-icons/fi"
+import { FaHospital } from "react-icons/fa"
 
 class Settings extends Component {
 
 goProfile = () => {
   window.location.href="/settings/profile"
 }
+
+goClinic=()=>{
+   window.location.href="/settings/ClinicSettings"
+  }
 
 goDoctors = () => {
   window.location.href="/settings/doctors"
@@ -60,6 +65,15 @@ return(
 
 <h3>Doctors</h3>
 <p>Manage clinic doctors</p>
+</div>
+
+<div className="settings-card" onClick={this.goClinic}>
+<div className="icon-circle orange">
+<FaHospital size={21}/>
+</div>
+
+<h3>Clinic Settings</h3>
+<p>Update clinic timings and consultation fee</p>
 </div>
 
 
