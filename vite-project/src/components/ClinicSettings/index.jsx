@@ -11,10 +11,11 @@ import "./index.css"
 class ClinicSettings extends Component {
 
   state = {
+    hospitalName: "",
     start_time: "",
     end_time: "",
     consultation_fee: "",
-    successMsg:""
+    successMsg: ""
   }
 
   componentDidMount() {
@@ -22,59 +23,78 @@ class ClinicSettings extends Component {
   }
 
   fetchSettings = async () => {
+
     const response = await fetch(
       "https://clinora-backend.onrender.com/api/clinic/settings",
-      { credentials: "include" }
+      {
+        credentials: "include"
+      }
     )
 
     if (response.ok) {
+
       const data = await response.json()
 
       this.setState({
+        hospitalName: data.name || "",
         start_time: data.start_time || "",
         end_time: data.end_time || "",
         consultation_fee: data.consultation_fee || ""
       })
+
     }
+
   }
 
-updateSettings = async () => {
+  updateSettings = async () => {
 
-  const { start_time, end_time, consultation_fee } = this.state
+    const {
+      hospitalName,
+      start_time,
+      end_time,
+      consultation_fee
+    } = this.state
 
-  const response = await fetch(
-    "https://clinora-backend.onrender.com/api/clinic/settings",
-    {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      credentials: "include",
-      body: JSON.stringify({
-        start_time,
-        end_time,
-        consultation_fee
+    const response = await fetch(
+      "https://clinora-backend.onrender.com/api/clinic/settings",
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          name: hospitalName,
+          start_time,
+          end_time,
+          consultation_fee
+        })
+      }
+    )
+
+    if (response.ok) {
+
+      this.setState({
+        successMsg: "✅ Settings saved successfully"
       })
+
+      setTimeout(() => {
+        this.setState({ successMsg: "" })
+      }, 3000)
+
     }
-  )
-
-  if (response.ok) {
-
-    this.setState({
-      successMsg: "✅ Settings saved successfully"
-    })
-
-    setTimeout(() => {
-      this.setState({ successMsg: "" })
-    }, 3000)
 
   }
-
-}
 
   render() {
 
-    const { start_time, end_time, consultation_fee } = this.state
+    const {
+      hospitalName,
+      start_time,
+      end_time,
+      consultation_fee,
+      successMsg
+    } = this.state
 
     return (
 
@@ -85,10 +105,32 @@ updateSettings = async () => {
           <div className="settings-header">
             <FaHospital className="settings-main-icon"/>
             <h1>Clinic Settings</h1>
-            <p>Manage clinic timings and consultation fee</p>
+            <p>Manage hospital information and clinic timings</p>
           </div>
 
           <div className="settings-card">
+
+            {/* Hospital Name */}
+
+            <div className="settings-group">
+
+              <label>
+                <FaHospital className="icon"/>
+                Hospital Name
+              </label>
+
+              <input
+                type="text"
+                placeholder="Enter hospital name"
+                value={hospitalName}
+                onChange={(e) =>
+                  this.setState({ hospitalName: e.target.value })
+                }
+              />
+
+            </div>
+
+            {/* Start Time */}
 
             <div className="settings-group">
 
@@ -107,6 +149,8 @@ updateSettings = async () => {
 
             </div>
 
+            {/* End Time */}
+
             <div className="settings-group">
 
               <label>
@@ -124,6 +168,8 @@ updateSettings = async () => {
 
             </div>
 
+            {/* Consultation Fee */}
+
             <div className="settings-group">
 
               <label>
@@ -136,11 +182,15 @@ updateSettings = async () => {
                 placeholder="Enter consultation fee"
                 value={consultation_fee}
                 onChange={(e) =>
-                  this.setState({ consultation_fee: e.target.value })
+                  this.setState({
+                    consultation_fee: e.target.value
+                  })
                 }
               />
 
             </div>
+
+            {/* Save Button */}
 
             <button
               className="save-btn"
@@ -149,19 +199,19 @@ updateSettings = async () => {
               <FaSave />
               Save Settings
             </button>
-            
 
-{this.state.successMsg && (
-  <p className="success-message">
-    {this.state.successMsg}
-  </p>
-)}
+            {successMsg && (
+              <p className="success-message">
+                {successMsg}
+              </p>
+            )}
 
           </div>
 
         </div>
 
       </div>
+
     )
   }
 }
