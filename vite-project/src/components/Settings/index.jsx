@@ -6,6 +6,7 @@ import { FiUsers } from "react-icons/fi"
 import { FiLock } from "react-icons/fi"
 import { FiLogOut } from "react-icons/fi"
 import { FaHospital } from "react-icons/fa"
+import { FaStethoscope } from "react-icons/fa"
 
 class Settings extends Component {
 
@@ -23,6 +24,10 @@ goDoctors = () => {
 
 goPassword = () => {
   window.location.href="/settings/password"
+}
+
+goDept=()=>{
+  window.location.href="/settings/departments"
 }
 
 logout = async () => {
@@ -94,6 +99,15 @@ return(
 
 <h3>Logout</h3>
 <p>Sign out from dashboard</p>
+</div>
+
+<div className="settings-card logout" onClick={this.goDept}>
+<div className="icon-circle red">
+<FaStethoscope size={22}/>
+</div>
+
+<h3>Departments</h3>
+<p>upadte/add departments</p>
 </div>
 
 </div>

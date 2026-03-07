@@ -9,6 +9,7 @@ import Doctors from './components/Doctors'
 import Settings from './components/Settings'
 import Appointments from "./components/GetAppointments"
 import ClinicSettings from './components/ClinicSettings'
+import DepartmentSettings from './components/DepartmentSettings'
 
 function App() {
   
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/settings/password" element={<ChangePassword />} />
         <Route path="/settings/clinic" element={<ClinicSettings/>}/>
+        <Route path="/settings/departments" element={<DepartmentSettings/>}/>
         <Route path="/dashboard" element={<Appointments />} />
         <Route path="/settings/doctors" element={<Doctors/>}/>
         <Route path="/settings" element={<Settings/>}/>
