@@ -1,11 +1,14 @@
 .appointmentContainer{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(320px,1fr));
+    gap: 20px;
     width:1200px;
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
     min-height: 50vh;
     align-self: center;
+    list-style-type: none;
 }
 .maincontainer1 {
   display: flex;
