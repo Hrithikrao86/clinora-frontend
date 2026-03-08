@@ -1,8 +1,8 @@
 import "./index.css"
 const EachAppointment=(props)=>{
    const {details,onComplete,onCancel}=props
-   console.log(details)
-   const {id,name,phone,appointment_date,appointment_time,status,department,token_code}=details
+   console.log("Details :",details)
+   const {id,name,phone,appointment_date,appointment_time,status,department,token_code,doctor}=details
    const completed=()=>{
       onComplete(id)
    }
@@ -33,6 +33,7 @@ const EachAppointment=(props)=>{
     </div>
 
     <p className="department">🩺 {department}</p>
+    <p>{doctor}</p>
 
     {/* ⭐ Verification Code */}
     <p className="token-code">
