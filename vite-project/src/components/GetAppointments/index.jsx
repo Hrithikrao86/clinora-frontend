@@ -8,6 +8,7 @@ import DatesHeader from "../DatesHeader"
 import GetTotalApp from "../GetTotalApp"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHospital } from "@fortawesome/free-solid-svg-icons"
+import {io} from "socket.io-client"
 
 const getNext7Days = () => {
   const days = []
@@ -225,22 +226,32 @@ handleLogout = async () => {
     window.location = "/"
   }
 }
-    componentDidMount(){
+componentDidMount(){
 
-        this.checkAuth()
-  
-this.getAppointment()
-this.getallApp()
-this.fetchBlockedDates()
-this.fetchClinicInfo()
+  this.checkAuth()
 
-this.interval=setInterval(() => {
-    this.getAppointment();
-    this.getallApp();
-    this.fetchBlockedDates()
-    
-}, 3000);
-    }  
+  this.getAppointment()
+  this.getallApp()
+  this.fetchBlockedDates()
+  this.fetchClinicInfo()
+
+  // 🔥 connect socket
+  this.socket = io("https://clinora-backend.onrender.com", {
+    withCredentials: true
+  })
+
+  // 🔔 listen for new appointment
+  this.socket.on("newAppointment", (data) => {
+
+    console.log("New appointment received", data)
+
+    // refresh dashboard
+    this.getAppointment()
+    this.getallApp()
+
+  })
+
+}  
     
     componentWillUnmount(){
         clearInterval(this.interval)
