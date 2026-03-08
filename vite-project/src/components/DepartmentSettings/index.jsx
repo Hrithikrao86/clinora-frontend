@@ -98,7 +98,7 @@ class DepartmentSettings extends Component {
 
               <input
                 type="checkbox"
-                disabled={!selected.includes(d.dept_key)}
+                
                 checked={selected.includes(d.dept_key)}
                 onChange={()=>this.toggleDepartment(d.dept_key)}
               />
