@@ -226,32 +226,22 @@ handleLogout = async () => {
     window.location = "/"
   }
 }
-componentDidMount(){
+    componentDidMount(){
 
-  this.checkAuth()
+        this.checkAuth()
+  
+this.getAppointment()
+this.getallApp()
+this.fetchBlockedDates()
+this.fetchClinicInfo()
 
-  this.getAppointment()
-  this.getallApp()
-  this.fetchBlockedDates()
-  this.fetchClinicInfo()
-
-  // 🔥 connect socket
-  this.socket = io("https://clinora-backend.onrender.com", {
-    withCredentials: true
-  })
-
-  // 🔔 listen for new appointment
-  this.socket.on("newAppointment", (data) => {
-
-    console.log("New appointment received", data)
-
-    // refresh dashboard
-    this.getAppointment()
-    this.getallApp()
-
-  })
-
-}  
+this.interval=setInterval(() => {
+    this.getAppointment();
+    this.getallApp();
+    this.fetchBlockedDates()
+    
+}, 10000);
+    }  
     
     componentWillUnmount(){
         clearInterval(this.interval)
