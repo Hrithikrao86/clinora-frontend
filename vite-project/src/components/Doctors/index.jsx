@@ -6,6 +6,7 @@ class Doctors extends Component{
 
 state={
   doctors:[],
+  departments:[],
   showModal:false,
   name:"",
   department:""
@@ -13,6 +14,7 @@ state={
 
 componentDidMount(){
   this.fetchDoctors()
+  this.fetchDepartments()
 }
 
 fetchDoctors = async () => {
@@ -29,6 +31,25 @@ fetchDoctors = async () => {
   if(response.ok){
     this.setState({doctors:data})
   }
+}
+
+fetchDepartments = async () => {
+
+  const res = await fetch(
+    "https://clinora-backend.onrender.com/api/clinic/departments",
+    {
+      credentials: "include"
+    }
+  )
+
+  if(res.ok){
+    const data = await res.json()
+
+    this.setState({
+      departments: data
+    })
+  }
+
 }
 
 addDoctor = async () => {
@@ -163,12 +184,21 @@ value={name}
 onChange={(e)=>this.setState({name:e.target.value})}
 />
 
-<input
-placeholder="Department"
-value={department}
-onChange={(e)=>this.setState({department:e.target.value})}
-/>
+<select
+  value={this.state.department}
+  onChange={(e)=>this.setState({department:e.target.value})}
+  className="doctor-select"
+>
 
+<option value="">Select Department</option>
+
+{this.state.departments.map(dep => (
+  <option key={dep.dept_key} value={dep.dept_key}>
+    {dep.name_en}
+  </option>
+))}
+
+</select>
 <button
 className="save-btn"
 onClick={this.addDoctor}
