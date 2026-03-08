@@ -138,7 +138,7 @@ getallApp = async () => {
   const {selectedDate}=this.state
 
   const response = await fetch(
-    `https://clinora-backend.onrender.com/api/appointments/all?date=${selectedDate}`,
+    `https://clinora-backend.onrender.com/api/appointments/all`,
     {
       method: "GET",
       credentials: "include"
@@ -255,86 +255,104 @@ this.interval=setInterval(() => {
        console.log(totalApp)
         return (
         
-        <div className='maincontainer'>
-      <div className="hero">
-  <div className="hero-text">
-    <h1>Hello <span>{this.state.clinicName},</span></h1>
-    <p>Manage today’s and upcoming appointments easily</p>
-  </div>
-<div className="header-actions">
-  <img src="https://image2url.com/r2/default/images/1771932757551-0110636d-ee4f-4cd2-838e-3fddff9323ec.png" alt="clinora logo" className="smallLogo"/>
+       <div className='maincontainer'>
 
-
- <button className="logout-btn"
-onClick={()=>window.location.href="/settings"}
->
-Settings
-</button>
-</div> 
-
-  
-</div>
-
-{this.state.showProfile && (
-  <div className="profile-panel">
-    <h3>Change Password</h3>
-
-    <input
-      type="password"
-      placeholder="Old Password"
-      value={this.state.oldPassword}
-      onChange={e => this.setState({ oldPassword: e.target.value })}
-    />
-
-    <input
-      type="password"
-      placeholder="New Password"
-      value={this.state.newPassword}
-      onChange={e => this.setState({ newPassword: e.target.value })}
-    />
-
-    <button onClick={this.handlePasswordChange}>
-      Update Password
-    </button>
-  </div>
-)}
-      
-      <div className="maincontainer1">
-          <GetTotalApp appointmentList={totalApp}/>
-            <ul className="filteritems">{statusList.map(i=><StatusHeader isclicked={statusId} details={i} updateId={this.updateId}/>)}</ul>
-            <ul className="dateContainer">
-  {days.map(day => 
-    <DatesHeader day={day} selectedDate={selectedDate} updateDate={this.updateDate}/>
-  )}
-</ul>
-<div className="date-action-container">
-  <button
-    type="button"
-    onClick={() => this.toggleDate(selectedDate)}
-    className={isBlocked ? "blocked-btn" : "available-btn"}
-  >
-    {isBlocked ? "🔴 Unblock Date" : "🟢 Block Date"}
-  </button>
-</div>
-
-       {appointmentList.length===0?
-       <div className="empty-state">
-  <img
-    src="https://image2url.com/r2/default/images/1770708770798-5deb8e57-7a2e-4070-8e22-6c2937214d73.png"
-    alt="No appointments"
-    className="empty-image"
-  />
-  <h3 className="empty-title">No Appointments</h3>
-  <p className="empty-text">
-    There are no appointments scheduled for this date.
-  </p>
-</div>
-:
-        (   <ul className="appointmentContainer">
-            {appointmentList.map(i=><EachAppointment details={i} onCancel={this.onCancel} onComplete={this.onComplete}/>)}
-            </ul>)}  
-        </div>
+  {/* HEADER */}
+  <div className="hero">
+    <div className="hero-text">
+      <h1>Hello <span>{this.state.clinicName},</span></h1>
+      <p>Manage today’s and upcoming appointments easily</p>
     </div>
+
+    <div className="header-actions">
+      <img 
+        src="https://image2url.com/r2/default/images/1771932757551-0110636d-ee4f-4cd2-838e-3fddff9323ec.png"
+        alt="clinora logo"
+        className="smallLogo"
+      />
+
+      <button
+        className="logout-btn"
+        onClick={()=>window.location.href="/settings"}
+      >
+        Settings
+      </button>
+    </div>
+  </div>
+
+
+  {/* FILTER SECTION */}
+  <div className="dashboard-controls">
+
+    <GetTotalApp appointmentList={totalApp}/>
+
+    <ul className="filteritems">
+      {statusList.map(i =>
+        <StatusHeader
+          isclicked={statusId}
+          details={i}
+          updateId={this.updateId}
+        />
+      )}
+    </ul>
+
+    <ul className="dateContainer">
+      {days.map(day =>
+        <DatesHeader
+          day={day}
+          selectedDate={selectedDate}
+          updateDate={this.updateDate}
+        />
+      )}
+    </ul>
+
+    <div className="date-action-container">
+      <button
+        type="button"
+        onClick={() => this.toggleDate(selectedDate)}
+        className={isBlocked ? "blocked-btn" : "available-btn"}
+      >
+        {isBlocked ? "🔴 Unblock Date" : "🟢 Block Date"}
+      </button>
+    </div>
+
+  </div>
+
+
+  {/* SCROLLABLE AREA */}
+  <div className="appointments-scroll">
+
+    {appointmentList.length===0 ? (
+
+      <div className="empty-state">
+        <img
+          src="https://image2url.com/r2/default/images/1770708770798-5deb8e57-7a2e-4070-8e22-6c2937214d73.png"
+          alt="No appointments"
+          className="empty-image"
+        />
+        <h3 className="empty-title">No Appointments</h3>
+        <p className="empty-text">
+          There are no appointments scheduled for this date.
+        </p>
+      </div>
+
+    ) : (
+
+      <ul className="appointmentContainer">
+        {appointmentList.map(i =>
+          <EachAppointment
+            details={i}
+            onCancel={this.onCancel}
+            onComplete={this.onComplete}
+          />
+        )}
+      </ul>
+
+    )}
+
+  </div>
+
+</div>
   )
     }
     }
