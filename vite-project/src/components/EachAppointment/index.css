@@ -185,3 +185,20 @@
 .cancel-btn:focus {
   outline: none;
 }
+
+.token-code{
+  margin-top:6px;
+  font-size:14px;
+  color:#555;
+}
+
+.token-code span{
+  background:#2563eb;
+  color:white;
+  padding:3px 8px;
+  border-radius:6px;
+  font-weight:600;
+  margin-left:5px;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
