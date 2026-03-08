@@ -36,11 +36,16 @@ class DepartmentSettings extends Component {
       this.setState({
         selected:selected.filter(d=>d!==key)
       })
-    }else{
+    }
+    if (selected.length>8){
+      alert("You can select Maximum 8 departments")
+      return
+    }
+    
       this.setState({
         selected:[...selected,key]
       })
-    }
+    
 
   }
 
@@ -93,6 +98,7 @@ class DepartmentSettings extends Component {
 
               <input
                 type="checkbox"
+                disabled={!selected.includes(d.dept_key)}
                 checked={selected.includes(d.dept_key)}
                 onChange={()=>this.toggleDepartment(d.dept_key)}
               />
