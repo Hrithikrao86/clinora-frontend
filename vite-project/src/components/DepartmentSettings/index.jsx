@@ -37,7 +37,7 @@ class DepartmentSettings extends Component {
         selected:selected.filter(d=>d!==key)
       })
     }
-    if (selected.length>8){
+    if (selected.length>=8){
       alert("You can select Maximum 8 departments")
       return
     }
