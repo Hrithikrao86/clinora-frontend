@@ -232,6 +232,7 @@ font-size:14px;
   align-items:center;
   margin-top:14px;
   flex-wrap:wrap;
+  width: 70%;
 }
 
 
@@ -254,7 +255,7 @@ font-size:14px;
   font-size:14px;
   background:#fafafa;
   transition:all .2s ease;
-  align-self: center;
+  
 }
 
 .search-box input:focus{
