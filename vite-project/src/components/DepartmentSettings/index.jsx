@@ -28,26 +28,32 @@ class DepartmentSettings extends Component {
 
   }
 
-  toggleDepartment = (key) => {
+toggleDepartment = (key) => {
 
-    const {selected} = this.state
+  const { selected } = this.state
 
-    if(selected.includes(key)){
-      this.setState({
-        selected:selected.filter(d=>d!==key)
-      })
-    }
-    if (selected.length>=8){
-      alert("You can select Maximum 8 departments")
-      return
-    }
-    
-      this.setState({
-        selected:[...selected,key]
-      })
-    
+  const alreadySelected = selected.includes(key)
 
+  // If removing department
+  if (alreadySelected) {
+    this.setState({
+      selected: selected.filter(d => d !== key)
+    })
+    return
   }
+
+  // If adding department and already 8 selected
+  if (selected.length >= 8) {
+    alert("You can select Maximum 8 departments")
+    return
+  }
+
+  // Add department
+  this.setState({
+    selected: [...selected, key]
+  })
+
+}
 
   saveDepartments = async () => {
 
