@@ -38,7 +38,8 @@ const iso = today.toLocaleDateString("en-CA")
 
 const statusList=[{statusId:"BOOKED",statusLang:"Booked"},
     {statusId:"CANCELLED",statusLang:"Cancelled"},
-    {statusId:"COMPLETED",statusLang:"Completed"}]
+    {statusId:"COMPLETED",statusLang:"Completed"},
+  {statusId:"HISTORY",statusLang:"History"}]
 
 
 
