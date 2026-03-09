@@ -337,7 +337,7 @@ Settings
     
 <div className="toolbar-row">
        
-          {statusId !== "HISTORY" && ( <>
+          {statusId !== "HISTORY" && ( <div>
             <ul className="dateContainer">
   {days.map(day => 
     <DatesHeader day={day} selectedDate={selectedDate} updateDate={this.updateDate}/>
@@ -352,8 +352,8 @@ Settings
     {isBlocked ? "🔴 Unblock Date" : "🟢 Block Date"}
   </button>
 </div>
-</>)}
-   <div className="toolbar-top">
+</div>)}
+   <div className="toolbar-right">
 
   <div className="search-box">
     <input
