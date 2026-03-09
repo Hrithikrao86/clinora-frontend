@@ -1,5 +1,5 @@
 import "./index.css"
-import { th } from "date-fns/locale"
+import { da, th } from "date-fns/locale"
 
 import { Component} from "react"
 import EachAppointment from "../EachAppointment"
@@ -162,7 +162,7 @@ getallApp = async () => {
 handleSearch = async (e) => {
 
   const phone = e.target.value
-
+  console.log("phone:",phone)
   if(phone.length < 3){
     this.getAppointment()
     return
@@ -176,6 +176,7 @@ handleSearch = async (e) => {
   )
 
   const data = await response.json()
+  console.log("results:",data)
 
   this.setState({
     appointmentList: data
