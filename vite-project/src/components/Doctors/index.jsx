@@ -9,7 +9,8 @@ state={
   departments:[],
   showModal:false,
   name:"",
-  department:""
+  department:"",
+  schedules:{}
 }
 
 componentDidMount(){
@@ -117,6 +118,73 @@ deleteDoctor = async (id) => {
   this.fetchDoctors()
 }
 
+updateScheduleField = (doctorId, field, value) => {
+
+  const schedules = {...this.state.schedules}
+
+  if(!schedules[doctorId]){
+    schedules[doctorId] = {}
+  }
+
+  schedules[doctorId][field] = value
+
+  this.setState({ schedules })
+
+}
+
+
+toggleDay = (doctorId, day) => {
+
+  const schedules = {...this.state.schedules}
+
+  if(!schedules[doctorId]){
+    schedules[doctorId] = {working_days:[]}
+  }
+
+  const days = schedules[doctorId].working_days || []
+
+  if(days.includes(day)){
+    schedules[doctorId].working_days =
+      days.filter(d => d !== day)
+  }else{
+    schedules[doctorId].working_days =
+      [...days, day]
+  }
+
+  this.setState({ schedules })
+
+}
+
+
+saveSchedule = async (doctorId) => {
+
+  const schedule = this.state.schedules[doctorId]
+
+  if(!schedule){
+    alert("Please configure schedule first")
+    return
+  }
+
+  const response = await fetch(
+    `https://clinora-backend.onrender.com/api/clinic/doctors/${doctorId}/schedule`,
+    {
+      method:"PUT",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      credentials:"include",
+      body:JSON.stringify(schedule)
+    }
+  )
+
+  if(response.ok){
+    alert("Schedule saved")
+  }else{
+    alert("Failed to save schedule")
+  }
+
+}
+
 render(){
 
 const {doctors,showModal,name,department}=this.state
@@ -144,17 +212,68 @@ onClick={()=>this.setState({showModal:true})}
 
 <div className="doctor-grid">
 
-{doctors.map(doc=>(
-  
+{doctors.map(doc => (
+
 <div key={doc.id} className="doctor-card">
 
-<div className="avatar">
-👨‍⚕️
-</div>
+<div className="avatar">👨‍⚕️</div>
 
 <h3>{doc.name}</h3>
 
 <p>{doc.department || "General"}</p>
+
+
+<div className="schedule-box">
+
+<label>Start Time</label>
+
+<input
+type="time"
+onChange={(e)=>
+this.updateScheduleField(doc.id,"start_time",e.target.value)
+}
+/>
+
+
+<label>End Time</label>
+
+<input
+type="time"
+onChange={(e)=>
+this.updateScheduleField(doc.id,"end_time",e.target.value)
+}
+/>
+
+
+<div className="days">
+
+{["mon","tue","wed","thu","fri","sat","sun"].map(day => (
+
+<label key={day}>
+
+<input
+type="checkbox"
+onChange={()=>this.toggleDay(doc.id,day)}
+/>
+
+{day.toUpperCase()}
+
+</label>
+
+))}
+
+</div>
+
+
+<button
+className="schedule-btn"
+onClick={()=>this.saveSchedule(doc.id)}
+>
+Save Schedule
+</button>
+
+</div>
+
 
 <button
 className="delete-btn"

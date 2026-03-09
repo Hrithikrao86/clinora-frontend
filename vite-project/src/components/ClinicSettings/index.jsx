@@ -23,45 +23,30 @@ class ClinicSettings extends Component {
     this.fetchSettings()
   }
 
-sendBroadcast = async () => {
+sendBroadcast = async (patients, message) => {
 
-  const { broadcastMsg } = this.state
+  console.log("Starting broadcast...")
 
-  if(!broadcastMsg.trim()){
-    this.setState({
-      broadcastStatus:"⚠ Please enter a message"
-    })
-    return
-  }
+  for (const p of patients) {
 
-  const response = await fetch(
-    "https://clinora-backend.onrender.com/api/broadcast",
-    {
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      credentials:"include",
-      body:JSON.stringify({
-        message:broadcastMsg
-      })
+    try {
+
+      await sendMessage(p.phone, message)
+
+      console.log("Sent to:", p.phone)
+
+      // wait 1 second between messages
+      await new Promise(r => setTimeout(r, 1000))
+
+    } catch (err) {
+
+      console.log("Failed for:", p.phone)
+
     }
-  )
-
-  const data = await response.json()
-
-  if(response.ok){
-
-    this.setState({
-      broadcastMsg:"",
-      broadcastStatus:`✅ Sent to ${data.total} patients`
-    })
-
-    setTimeout(()=>{
-      this.setState({broadcastStatus:""})
-    },4000)
 
   }
+
+  console.log("Broadcast finished")
 
 }
 

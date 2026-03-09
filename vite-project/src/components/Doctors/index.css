@@ -135,3 +135,48 @@ cursor:pointer;
   border:1px solid #ddd;
   font-size:14px;
 }
+.schedule-box{
+margin-top:12px;
+padding-top:10px;
+border-top:1px solid #eee;
+display:flex;
+flex-direction:column;
+gap:6px;
+}
+
+.schedule-box input[type="time"]{
+padding:6px;
+border:1px solid #ddd;
+border-radius:6px;
+width:140px;
+}
+
+.days{
+display:flex;
+flex-wrap:wrap;
+gap:6px;
+margin-top:6px;
+}
+
+.days label{
+font-size:12px;
+background:#f5f7fb;
+padding:4px 8px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.schedule-btn{
+margin-top:8px;
+background:#4f7cff;
+color:white;
+border:none;
+padding:6px 10px;
+border-radius:6px;
+cursor:pointer;
+font-size:13px;
+}
+
+.schedule-btn:hover{
+background:#345be0;
+}
