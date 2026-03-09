@@ -228,17 +228,13 @@ font-size:14px;
 }
 .toolbar-row{
   display:flex;
-  justify-content:space-between;
+  justify-content:space-around;
   align-items:center;
   margin-top:14px;
   flex-wrap:wrap;
 }
 
-.dateblock-container{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
+
 
 .toolbar-right{
   display:flex;
