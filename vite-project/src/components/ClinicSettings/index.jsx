@@ -15,12 +15,55 @@ class ClinicSettings extends Component {
     start_time: "",
     end_time: "",
     consultation_fee: "",
-    successMsg: ""
+    successMsg: "",
+    broadcastStatus:""
   }
 
   componentDidMount() {
     this.fetchSettings()
   }
+
+sendBroadcast = async () => {
+
+  const { broadcastMsg } = this.state
+
+  if(!broadcastMsg.trim()){
+    this.setState({
+      broadcastStatus:"⚠ Please enter a message"
+    })
+    return
+  }
+
+  const response = await fetch(
+    "https://clinora-backend.onrender.com/api/broadcast",
+    {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      credentials:"include",
+      body:JSON.stringify({
+        message:broadcastMsg
+      })
+    }
+  )
+
+  const data = await response.json()
+
+  if(response.ok){
+
+    this.setState({
+      broadcastMsg:"",
+      broadcastStatus:`✅ Sent to ${data.total} patients`
+    })
+
+    setTimeout(()=>{
+      this.setState({broadcastStatus:""})
+    },4000)
+
+  }
+
+}
 
   fetchSettings = async () => {
 
@@ -207,6 +250,38 @@ class ClinicSettings extends Component {
             )}
 
           </div>
+
+          {/* Broadcast Message */}
+
+<div className="settings-group broadcast-section">
+
+  <label>
+    📢 Broadcast Message
+  </label>
+
+  <textarea
+    placeholder="Send announcement to previous patients..."
+    value={this.state.broadcastMsg}
+    onChange={(e)=>
+      this.setState({broadcastMsg:e.target.value})
+    }
+    rows="4"
+  />
+
+  <button
+    className="broadcast-btn"
+    onClick={this.sendBroadcast}
+  >
+    Send Broadcast
+  </button>
+
+  {this.state.broadcastStatus && (
+    <p className="broadcast-status">
+      {this.state.broadcastStatus}
+    </p>
+  )}
+
+</div>
 
         </div>
 
