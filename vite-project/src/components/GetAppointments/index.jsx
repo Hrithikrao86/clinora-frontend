@@ -334,17 +334,8 @@ Settings
           <GetTotalApp appointmentList={totalApp}/>
             <ul className="filteritems">{statusList.map(i=><StatusHeader isclicked={statusId} details={i} updateId={this.updateId}/>)}</ul>
           
-       <div className="toolbar-top">
-
-  <div className="search-box">
-    <input
-      type="text"
-      placeholder="Search patient phone (ex: 7014)"
-      onChange={this.handleSearch}
-    />
-  </div>
-
-</div>
+    
+<div className="toolbar-row">
        
           {statusId !== "HISTORY" && ( <>
             <ul className="dateContainer">
@@ -362,7 +353,18 @@ Settings
   </button>
 </div>
 </>)}
+   <div className="toolbar-top">
 
+  <div className="search-box">
+    <input
+      type="text"
+      placeholder="Search patient phone (ex: 7014)"
+      onChange={this.handleSearch}
+    />
+  </div>
+
+</div> 
+</div>
 
        {appointmentList.length===0?
        <div className="empty-state">

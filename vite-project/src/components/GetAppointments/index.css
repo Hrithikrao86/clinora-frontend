@@ -227,27 +227,35 @@ border:1px solid #ddd;
 font-size:14px;
 }
 
-.toolbar-top{
+.toolbar-row{
   display:flex;
-  justify-content:flex-end;
-  margin:14px 0 10px 0;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:14px;
+  margin-bottom:18px;
+}
+
+.toolbar-right{
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
 .search-box input{
-  width:220px;
-  padding:9px 14px;
-  border-radius:10px;
+  width:200px;
+  padding:8px 12px;
+  border-radius:8px;
   border:1px solid #e5e7eb;
   font-size:14px;
   background:#fafafa;
-  transition:all .25s ease;
+  transition:all .2s ease;
 }
 
 .search-box input:focus{
   outline:none;
   border-color:#4f46e5;
   background:white;
-  box-shadow:0 0 0 3px rgba(79,70,229,0.08);
+  box-shadow:0 0 0 2px rgba(79,70,229,0.1);
 }
 
 .search-box input::placeholder{
