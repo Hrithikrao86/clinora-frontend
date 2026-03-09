@@ -369,7 +369,7 @@ Settings
 
   </div>
 </div>
-<div className="appointments-area">
+
        {appointmentList.length===0?
        <div className="empty-state">
   <img
@@ -388,7 +388,7 @@ Settings
             </ul>)}  
         </div>
     </div>
-    </div>
+    
   )
     }
     }
