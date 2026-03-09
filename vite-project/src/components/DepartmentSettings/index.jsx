@@ -16,7 +16,7 @@ class DepartmentSettings extends Component {
   fetchDepartments = async () => {
 
     const response = await fetch(
-      "https://clinora-backend.onrender.com/api/departments/all",
+      "https://api.clinorahq.in/api/departments/all",
       { credentials:"include" }
     )
 
@@ -60,7 +60,7 @@ toggleDepartment = (key) => {
     const {selected} = this.state
 
     const response = await fetch(
-      "https://clinora-backend.onrender.com/api/clinic/departments",
+      "https://api.clinorahq.in/api/clinic/departments",
       {
         method:"PUT",
         headers:{

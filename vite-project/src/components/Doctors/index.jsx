@@ -2,6 +2,8 @@ import "./index.css"
 import {Component} from "react"
 import {FiUserPlus, FiTrash2} from "react-icons/fi"
 
+const API="https://api.clinorahq.in"
+
 class Doctors extends Component{
 
 state={
@@ -21,7 +23,7 @@ componentDidMount(){
 fetchDoctors = async () => {
 
   const response = await fetch(
-    "https://clinora-backend.onrender.com/api/clinic/doctors",
+    `${API}/api/clinic/doctors`,
     {
       credentials:"include"
     }
@@ -37,7 +39,7 @@ fetchDoctors = async () => {
 fetchDepartments = async () => {
 
   const res = await fetch(
-    "https://clinora-backend.onrender.com/api/clinic/departments",
+    `${API}/api/clinic/departments`,
     {
       credentials: "include"
     }
@@ -62,7 +64,7 @@ addDoctor = async () => {
   try {
 
     const response = await fetch(
-      "https://clinora-backend.onrender.com/api/clinic/doctors",
+      `${API}/api/clinic/doctors`,
       {
         method: "POST",
         headers: {
@@ -108,7 +110,7 @@ addDoctor = async () => {
 deleteDoctor = async (id) => {
 
   await fetch(
-    `https://clinora-backend.onrender.com/api/clinic/doctors/${id}`,
+    `${API}/api/clinic/doctors/${id}`,
     {
       method:"DELETE",
       credentials:"include"
@@ -166,7 +168,7 @@ saveSchedule = async (doctorId) => {
   }
 
   const response = await fetch(
-    `https://clinora-backend.onrender.com/api/clinic/doctors/${doctorId}/schedule`,
+    `${API}/api/clinic/doctors/${doctorId}/schedule`,
     {
       method:"PUT",
       headers:{

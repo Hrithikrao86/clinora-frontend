@@ -19,7 +19,7 @@ class ChangePassword extends Component {
     const token = localStorage.getItem("token")
 
     const response = await fetch(
-      "https://clinora-backend.onrender.com/api/clinic/change-password",
+      "https://api.clinorahq.in/api/clinic/change-password",
       {
         method: "PUT",
         headers: {

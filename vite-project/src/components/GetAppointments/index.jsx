@@ -41,7 +41,7 @@ const statusList=[{statusId:"BOOKED",statusLang:"Booked"},
     {statusId:"COMPLETED",statusLang:"Completed"},
   {statusId:"HISTORY",statusLang:"History"}]
 
-
+const API="https://api.clinorahq.in"
 
 
 class Appointments extends Component{
@@ -64,7 +64,7 @@ class Appointments extends Component{
 
 fetchBlockedDates = async () => {
   
-  const response = await fetch(`https://clinora-backend.onrender.com/api/clinic/blocked-dates`,{
+  const response = await fetch(`${API}/api/clinic/blocked-dates`,{
     credentials: "include"
   }
 )
@@ -79,7 +79,7 @@ fetchClinicInfo = async () => {
   
 
   const response = await fetch(
-    "https://clinora-backend.onrender.com/api/me",
+    `${API}/api/me`,
    {
     credentials: "include"
   }
@@ -99,7 +99,7 @@ handlePasswordChange = async () => {
   const { oldPassword, newPassword } = this.state
 
   const response = await fetch(
-    "https://clinora-backend.onrender.com/api/clinic/change-password",
+    `${API}/api/clinic/change-password`,
     {
       method: "PUT",
       headers: {
@@ -129,7 +129,7 @@ onCancel = async (id) => {
   
 
   const response = await fetch(
-    `https://clinora-backend.onrender.com/api/appointments/cancel/${id}`,
+    `${API}/api/appointments/cancel/${id}`,
     {
       method: "PUT",
      credentials: "include"
@@ -145,7 +145,7 @@ getallApp = async () => {
   const {selectedDate}=this.state
 
   const response = await fetch(
-    `https://clinora-backend.onrender.com/api/appointments/all`,
+    `${API}/api/appointments/all`,
     {
       method: "GET",
       credentials: "include"
@@ -171,7 +171,7 @@ handleSearch = async (e) => {
   }
 
   const response = await fetch(
-    `https://clinora-backend.onrender.com/api/appointments/search?phone=${phone}`,
+    `${API}/api/appointments/search?phone=${phone}`,
     {credentials:"include"}
   )
 
@@ -188,13 +188,13 @@ toggleDate = async (date) => {
   const isBlocked = this.state.blockedDates.includes(date)
 
   if (isBlocked) {
-    await fetch(`https://clinora-backend.onrender.com/api/clinic/unblock-date/${date}`, {
+    await fetch(`${API}/api/clinic/unblock-date/${date}`, {
       method: "DELETE",
       credentials: "include"
       
     })
   } else {
-    await fetch(`https://clinora-backend.onrender.com/api/clinic/block-date`, {
+    await fetch(`${API}/api/clinic/block-date`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -207,7 +207,7 @@ toggleDate = async (date) => {
 handleLogout = async () => {
 
   await fetch(
-    "https://clinora-backend.onrender.com/api/logout",
+    `${API}/api/logout`,
     {
       method: "POST",
       credentials: "include"
@@ -218,7 +218,7 @@ handleLogout = async () => {
 }
     onComplete=async (id)=>{
       
-        const url=`https://clinora-backend.onrender.com/api/appointments/${id}/complete`
+        const url=`${API}/api/appointments/${id}/complete`
         const options={
             method:"PUT",
            credentials:"include",
@@ -228,7 +228,7 @@ handleLogout = async () => {
     }
     getAppointment=async ()=>{
         const {statusId,selectedDate}=this.state
-         const url=`https://clinora-backend.onrender.com/api/appointments/${statusId}?date=${selectedDate}`
+         const url=`${API}/api/appointments/${statusId}?date=${selectedDate}`
          const options={
             method:"GET",
             credentials:"include",
@@ -246,7 +246,7 @@ handleLogout = async () => {
         }
         checkAuth = async () => {
   const response = await fetch(
-    "https://clinora-backend.onrender.com/api/me",
+    `${API}/api/me`,
     {
       credentials: "include"
     }

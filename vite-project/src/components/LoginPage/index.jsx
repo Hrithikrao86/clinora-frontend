@@ -20,7 +20,7 @@ handleLogin = async () => {
   try {
 
     const response = await fetch(
-      "https://clinora-backend.onrender.com/api/login",
+      "https://api.clinorahq.in/api/login",
       {
         method: "POST",
         headers: {

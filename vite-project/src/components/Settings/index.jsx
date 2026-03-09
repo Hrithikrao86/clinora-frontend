@@ -33,7 +33,7 @@ goDept=()=>{
 logout = async () => {
 
   await fetch(
-    "https://clinora-backend.onrender.com/api/logout",
+    "https://api.clinorahq.in/api/logout",
     {
       method:"POST",
       credentials:"include"
