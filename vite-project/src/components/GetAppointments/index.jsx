@@ -51,7 +51,12 @@ class Appointments extends Component{
 
 
     updateId=(id)=>{
+      if (id==="HISTORY"){
+        this.setState({statusId:id,selectedDate:null},this.getAppointment)
+      }
+      else{
      this.setState({statusId:id},this.getAppointment)
+      }
     }
     updateDate = (date) => {
   this.setState({ selectedDate: date }, this.getAppointment)
@@ -304,6 +309,8 @@ Settings
       <div className="maincontainer1">
           <GetTotalApp appointmentList={totalApp}/>
             <ul className="filteritems">{statusList.map(i=><StatusHeader isclicked={statusId} details={i} updateId={this.updateId}/>)}</ul>
+          
+          {statusId !== "HISTORY" && ( <>
             <ul className="dateContainer">
   {days.map(day => 
     <DatesHeader day={day} selectedDate={selectedDate} updateDate={this.updateDate}/>
@@ -318,6 +325,7 @@ Settings
     {isBlocked ? "🔴 Unblock Date" : "🟢 Block Date"}
   </button>
 </div>
+</>)}
 
        {appointmentList.length===0?
        <div className="empty-state">
