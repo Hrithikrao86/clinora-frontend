@@ -334,34 +334,31 @@ Settings
           <GetTotalApp appointmentList={totalApp}/>
             <ul className="filteritems">{statusList.map(i=><StatusHeader isclicked={statusId} details={i} updateId={this.updateId}/>)}</ul>
           
-    
-<div className="toolbar-row">
+ <div className="toolbar-wrapper">
+  <div className="toolbar-row">
 
-  {statusId !== "HISTORY" && (
-    <div className="dateblock-container">
+    {statusId !== "HISTORY" && (
+      <div className="dateblock-container">
+        <ul className="dateContainer">
+          {days.map(day => (
+            <DatesHeader
+              day={day}
+              selectedDate={selectedDate}
+              updateDate={this.updateDate}
+            />
+          ))}
+        </ul>
 
-      <ul className="dateContainer">
-        {days.map(day => (
-          <DatesHeader
-            day={day}
-            selectedDate={selectedDate}
-            updateDate={this.updateDate}
-          />
-        ))}
-      </ul>
+        <button
+          type="button"
+          onClick={() => this.toggleDate(selectedDate)}
+          className={isBlocked ? "blocked-btn" : "available-btn"}
+        >
+          {isBlocked ? "🔴 Unblock Date" : "🟢 Block Date"}
+        </button>
+      </div>
+    )}
 
-      <button
-        type="button"
-        onClick={() => this.toggleDate(selectedDate)}
-        className={isBlocked ? "blocked-btn" : "available-btn"}
-      >
-        {isBlocked ? "🔴 Unblock Date" : "🟢 Block Date"}
-      </button>
-
-    </div>
-  )}
-
-  <div className="toolbar-right">
     <div className="search-box">
       <input
         type="text"
@@ -369,8 +366,8 @@ Settings
         onChange={this.handleSearch}
       />
     </div>
-  </div>
 
+  </div>
 </div>
 
        {appointmentList.length===0?
