@@ -253,7 +253,7 @@ handleLogout = async () => {
   )
 
   if (!response.ok) {
-    window.location = "/"
+    console.log("Auth failed",response.status)
   }
 }
     componentDidMount(){
