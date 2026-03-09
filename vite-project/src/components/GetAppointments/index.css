@@ -262,3 +262,7 @@ font-size:14px;
   outline:none;
   border-color:#444;
 }
+.appointments-area{
+  min-height: 420px;
+  overflow-y: auto;
+}

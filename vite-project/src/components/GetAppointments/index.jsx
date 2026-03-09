@@ -369,7 +369,7 @@ Settings
 
   </div>
 </div>
-
+<div className="appointments-area">
        {appointmentList.length===0?
        <div className="empty-state">
   <img
@@ -387,6 +387,7 @@ Settings
             {appointmentList.map(i=><EachAppointment details={i} onCancel={this.onCancel} onComplete={this.onComplete}/>)}
             </ul>)}  
         </div>
+    </div>
     </div>
   )
     }
