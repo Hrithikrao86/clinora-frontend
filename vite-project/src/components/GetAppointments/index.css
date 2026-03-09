@@ -226,3 +226,30 @@ border-radius:8px;
 border:1px solid #ddd;
 font-size:14px;
 }
+
+.toolbar-top{
+  display:flex;
+  justify-content:flex-end;
+  margin:14px 0 10px 0;
+}
+
+.search-box input{
+  width:220px;
+  padding:9px 14px;
+  border-radius:10px;
+  border:1px solid #e5e7eb;
+  font-size:14px;
+  background:#fafafa;
+  transition:all .25s ease;
+}
+
+.search-box input:focus{
+  outline:none;
+  border-color:#4f46e5;
+  background:white;
+  box-shadow:0 0 0 3px rgba(79,70,229,0.08);
+}
+
+.search-box input::placeholder{
+  color:#9ca3af;
+}

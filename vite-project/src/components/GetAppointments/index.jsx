@@ -161,27 +161,26 @@ getallApp = async () => {
 
 handleSearch = async (e) => {
 
-  const phone = e.target.value
-  console.log("phone:",phone)
+  const phone = e.target.value.trim()
+
+  // prevent spaces search
   if(phone.length < 3){
+    this.setState({searchActive:false})
     this.getAppointment()
     return
   }
 
   const response = await fetch(
     `https://clinora-backend.onrender.com/api/appointments/search?phone=${phone}`,
-    {
-      credentials: "include"
-    }
+    {credentials:"include"}
   )
 
   const data = await response.json()
-  console.log("results:",data)
 
   this.setState({
-    appointmentList: data
+    appointmentList:data,
+    searchActive:true
   })
-
 }
 
 toggleDate = async (date) => {
@@ -335,6 +334,18 @@ Settings
           <GetTotalApp appointmentList={totalApp}/>
             <ul className="filteritems">{statusList.map(i=><StatusHeader isclicked={statusId} details={i} updateId={this.updateId}/>)}</ul>
           
+       <div className="toolbar-top">
+
+  <div className="search-box">
+    <input
+      type="text"
+      placeholder="Search patient phone (ex: 7014)"
+      onChange={this.handleSearch}
+    />
+  </div>
+
+</div>
+       
           {statusId !== "HISTORY" && ( <>
             <ul className="dateContainer">
   {days.map(day => 
