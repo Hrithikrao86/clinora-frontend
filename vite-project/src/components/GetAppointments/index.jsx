@@ -159,6 +159,30 @@ getallApp = async () => {
   this.setState({ totalApp: data })
 }
 
+handleSearch = async (e) => {
+
+  const phone = e.target.value
+
+  if(phone.length < 3){
+    this.getAppointment()
+    return
+  }
+
+  const response = await fetch(
+    `https://clinora-backend.onrender.com/api/appointments/search?phone=${phone}`,
+    {
+      credentials: "include"
+    }
+  )
+
+  const data = await response.json()
+
+  this.setState({
+    appointmentList: data
+  })
+
+}
+
 toggleDate = async (date) => {
 
   const isBlocked = this.state.blockedDates.includes(date)
@@ -326,6 +350,15 @@ Settings
   </button>
 </div>
 </>)}
+<div className="search-container">
+
+<input
+  type="text"
+  placeholder="Search patient phone..."
+  onChange={this.handleSearch}
+/>
+
+</div>
 
        {appointmentList.length===0?
        <div className="empty-state">

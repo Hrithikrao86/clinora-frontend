@@ -214,3 +214,15 @@ margin-bottom: 10px;
 .logout-btn:active {
   transform: scale(0.97);
 }
+
+.search-container{
+margin:15px 0;
+}
+
+.search-container input{
+width:300px;
+padding:10px;
+border-radius:8px;
+border:1px solid #ddd;
+font-size:14px;
+}
