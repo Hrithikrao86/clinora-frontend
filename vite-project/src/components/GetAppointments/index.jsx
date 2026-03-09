@@ -362,15 +362,7 @@ Settings
   </button>
 </div>
 </>)}
-<div className="search-container">
 
-<input
-  type="text"
-  placeholder="Search patient phone..."
-  onChange={this.handleSearch}
-/>
-
-</div>
 
        {appointmentList.length===0?
        <div className="empty-state">
