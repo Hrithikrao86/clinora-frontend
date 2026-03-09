@@ -147,3 +147,21 @@ font-weight:600;
 cursor:pointer;
 margin-top:10px;
 }
+
+.action-buttons button{
+margin-right:8px;
+padding:6px 10px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+.subscription-btn{
+background:#6366f1;
+color:white;
+}
+
+.delete-btn{
+background:#ef4444;
+color:white;
+}

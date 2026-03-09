@@ -1,5 +1,5 @@
 import {Component} from "react"
-import {FiPlus, FiPower, FiX} from "react-icons/fi"
+import {FiPlus, FiPower, FiX, FiTrash2, FiCalendar} from "react-icons/fi"
 import "./index.css"
 
 class SuperAdmin extends Component{
@@ -21,7 +21,7 @@ componentDidMount(){
 fetchClinics = async ()=>{
 
   const response = await fetch(
-    "https://clinora-backend.onrender.com/api/superadmin/clinics",
+    "https://api.clinorahq.in/api/superadmin/clinics",
     {credentials:"include"}
   )
 
@@ -40,7 +40,7 @@ createClinic = async ()=>{
   const {name,username,password,phone_number_id} = this.state
 
   const response = await fetch(
-    "https://clinora-backend.onrender.com/api/superadmin/create-clinic",
+    "https://api.clinorahq.in/api/superadmin/create-clinic",
     {
       method:"POST",
       headers:{
@@ -74,7 +74,7 @@ createClinic = async ()=>{
 toggleClinic = async (id,is_active)=>{
 
   await fetch(
-    `https://clinora-backend.onrender.com/api/superadmin/toggle/${id}`,
+    `https://api.clinorahq.in/api/superadmin/toggle/${id}`,
     {
       method:"PUT",
       headers:{
@@ -83,6 +83,48 @@ toggleClinic = async (id,is_active)=>{
       credentials:"include",
       body:JSON.stringify({
         is_active:!is_active
+      })
+    }
+  )
+
+  this.fetchClinics()
+
+}
+
+deleteClinic = async (id) => {
+
+  const confirmDelete = window.confirm("Delete this hospital?")
+
+  if(!confirmDelete) return
+
+  await fetch(
+    `https://api.clinorahq.in/api/superadmin/clinics/${id}`,
+    {
+      method:"DELETE",
+      credentials:"include"
+    }
+  )
+
+  this.fetchClinics()
+
+}
+
+extendSubscription = async (id) => {
+
+  const newDate = prompt("Enter new expiry date (YYYY-MM-DD)")
+
+  if(!newDate) return
+
+  await fetch(
+    `https://api.clinorahq.in/api/superadmin/clinics/${id}/subscription`,
+    {
+      method:"PUT",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      credentials:"include",
+      body:JSON.stringify({
+        subscription_end:newDate
       })
     }
   )
@@ -157,13 +199,30 @@ onClick={()=>this.setState({showModal:true})}
 {clinic.subscription_end || "—"}
 </td>
 
-<td>
+<td className="action-buttons">
 
 <button
 className="toggle-btn"
 onClick={()=>this.toggleClinic(clinic.id,clinic.is_active)}
+title="Activate / Deactivate"
 >
 <FiPower/>
+</button>
+
+<button
+className="subscription-btn"
+onClick={()=>this.extendSubscription(clinic.id)}
+title="Extend Subscription"
+>
+<FiCalendar/>
+</button>
+
+<button
+className="delete-btn"
+onClick={()=>this.deleteClinic(clinic.id)}
+title="Delete Hospital"
+>
+<FiTrash2/>
 </button>
 
 </td>
