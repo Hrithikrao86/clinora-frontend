@@ -10,6 +10,7 @@ import Settings from './components/Settings'
 import Appointments from "./components/GetAppointments"
 import ClinicSettings from './components/ClinicSettings'
 import DepartmentSettings from './components/DepartmentSettings'
+import SuperAdmin from "./components/SuperAdmin"
 
 function App() {
   
@@ -23,6 +24,7 @@ function App() {
         <Route path="/dashboard" element={<Appointments />} />
         <Route path="/settings/doctors" element={<Doctors/>}/>
         <Route path="/settings" element={<Settings/>}/>
+        <Route path='/superadmin' element={<SuperAdmin/>}/>
       </Routes>
     </BrowserRouter>
   )
