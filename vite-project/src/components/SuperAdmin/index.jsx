@@ -11,11 +11,28 @@ state={
   username:"",
   password:"",
   phone_number_id:"",
-  subscription_end:""
+  subscription_end:"",
+
+  // 🔐 Access control
+  isAuthorized:false,
+  accessCode:""
+}
+
+// 🔐 verify code
+verifyCode = () => {
+  const SECRET_CODE = "218981"
+
+  if(this.state.accessCode === SECRET_CODE){
+    this.setState({isAuthorized:true}, this.fetchClinics)
+  }else{
+    alert("Invalid Access Code")
+  }
 }
 
 componentDidMount(){
-  this.fetchClinics()
+  if(this.state.isAuthorized){
+    this.fetchClinics()
+  }
 }
 
 fetchClinics = async ()=>{
@@ -135,7 +152,29 @@ extendSubscription = async (id) => {
 
 render(){
 
-const {clinics,showModal,name,username,password,phone_number_id} = this.state
+const {clinics,showModal,name,username,password,phone_number_id,isAuthorized,accessCode} = this.state
+
+// 🔐 Login Screen
+if(!isAuthorized){
+  return(
+    <div className="superadmin-login">
+
+      <h2>Clinora Super Admin</h2>
+
+      <input
+        type="password"
+        placeholder="Enter Access Code"
+        value={accessCode}
+        onChange={(e)=>this.setState({accessCode:e.target.value})}
+      />
+
+      <button onClick={this.verifyCode}>
+        Unlock
+      </button>
+
+    </div>
+  )
+}
 
 return(
 

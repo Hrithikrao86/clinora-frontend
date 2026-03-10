@@ -165,3 +165,28 @@ color:white;
 background:#ef4444;
 color:white;
 }
+
+.superadmin-login{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+height:100vh;
+gap:15px;
+}
+
+.superadmin-login input{
+padding:12px;
+width:250px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+.superadmin-login button{
+padding:10px 20px;
+background:#2b6ef3;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
