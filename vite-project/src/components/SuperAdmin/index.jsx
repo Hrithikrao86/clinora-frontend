@@ -267,7 +267,7 @@ title="Delete Hospital"
 </td>
 
 </tr>
-))}
+)) }
 
 </tbody>
 
