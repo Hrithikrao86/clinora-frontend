@@ -46,6 +46,7 @@ background:white;
 border-radius:12px;
 overflow:hidden;
 box-shadow:0 10px 25px rgba(0,0,0,0.08);
+width: 90%;
 }
 
 .clinic-table table{
@@ -214,8 +215,3 @@ position:static;
     position: relative;
 }
 
-.clinic-table th:last-child,
-.clinic-table td:last-child{
-width:140px;
-text-align:center;
-}
