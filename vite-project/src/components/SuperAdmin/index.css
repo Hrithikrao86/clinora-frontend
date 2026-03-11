@@ -3,6 +3,10 @@ padding:40px;
 background:#f5f7fb;
 min-height:100vh;
 font-family:system-ui;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
 }
 
 /* Header */
@@ -144,24 +148,24 @@ margin-top:10px;
 
 .action-buttons{
 display:flex;
-gap:8px;
+gap:10px;
 align-items:center;
-justify-content:center;
-flex-wrap:nowrap;
+justify-content:space-between;
+width: 25%;
 }
 
 .toggle-btn,
 .subscription-btn,
 .delete-btn{
 border:none;
-width:34px;
-height:34px;
+padding:8px;
 border-radius:6px;
 cursor:pointer;
 display:flex;
 align-items:center;
 justify-content:center;
 }
+
 .toggle-btn{
 background:#f1f5f9;
 }
@@ -214,4 +218,3 @@ position:static;
 .action-buttons button{
     position: relative;
 }
-
