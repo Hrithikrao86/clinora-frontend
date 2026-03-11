@@ -249,6 +249,14 @@ title="Activate / Deactivate"
 </button>
 
 <button
+className="delete-btn"
+onClick={()=>this.deleteClinic(clinic.id)}
+title="Delete Hospital"
+>
+<FiTrash2/>
+</button>
+
+<button
 className="subscription-btn"
 onClick={()=>this.extendSubscription(clinic.id)}
 title="Extend Subscription"
@@ -256,13 +264,7 @@ title="Extend Subscription"
 <FiCalendar/>
 </button>
 
-<button
-className="delete-btn"
-onClick={()=>this.deleteClinic(clinic.id)}
-title="Delete Hospital"
->
-<FiTrash2/>
-</button>
+
 
 </td>
 
