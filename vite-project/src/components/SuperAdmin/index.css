@@ -208,3 +208,7 @@ cursor:pointer;
 .subscription-btn svg{
 position:static;
 }
+
+.action-buttons button{
+    position: relative;
+}
