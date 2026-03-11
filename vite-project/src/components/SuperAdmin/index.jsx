@@ -258,7 +258,13 @@ title="Extend Subscription"
 <FiCalendar/>
 </button>
 
-
+<button
+className="delete-btn"
+onClick={()=>this.deleteClinic(clinic.id)}
+title="Delete Hospital"
+>
+<FiTrash2/>
+</button>
 
 </td>
 
