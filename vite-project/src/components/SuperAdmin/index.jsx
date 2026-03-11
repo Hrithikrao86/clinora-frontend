@@ -248,13 +248,7 @@ title="Activate / Deactivate"
 <FiPower/>
 </button>
 
-<button
-className="delete-btn"
-onClick={()=>this.deleteClinic(clinic.id)}
-title="Delete Hospital"
->
-<FiTrash2/>
-</button>
+
 
 <button
 className="subscription-btn"
