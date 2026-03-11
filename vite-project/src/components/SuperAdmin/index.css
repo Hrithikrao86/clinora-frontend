@@ -202,3 +202,9 @@ border:none;
 border-radius:6px;
 cursor:pointer;
 }
+
+.delete-btn svg,
+.toggle-btn svg,
+.subscription-btn svg{
+position:static;
+}
