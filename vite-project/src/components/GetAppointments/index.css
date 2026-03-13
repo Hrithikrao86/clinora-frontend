@@ -256,7 +256,10 @@ font-size:14px;
   position: relative;
   display: flex;
   justify-content: space-between;
+   background:#fff;
   align-items: center;
+  border-radius:6px;
+  border:1px solid #ddd;
 }
 
 .searchbox{
