@@ -9,6 +9,7 @@ import GetTotalApp from "../GetTotalApp"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHospital } from "@fortawesome/free-solid-svg-icons"
 import {io} from "socket.io-client"
+import {FiSearch} from "react-icons/fi"
 
 const getNext7Days = () => {
   const days = []
@@ -360,6 +361,7 @@ Settings
     )}
 
     <div className="search-box">
+    <FiSearch className="search-icon"/>
       <input
         type="text"
         placeholder="Search phone (ex: 7014)"
