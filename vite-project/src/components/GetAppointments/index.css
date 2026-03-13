@@ -267,6 +267,7 @@ font-size:14px;
   border:1px solid #ddd;
   font-size:14px;
   background:#fff;
+  margin-left: 10px;
 }
 
 .searchbox:focus{
