@@ -361,7 +361,10 @@ Settings
     )}
 
     <div className="search-box">
-    <FiSearch className="search-icon"/>
+      <div className="iconsearch">
+ <FiSearch className="search-icon"/>
+      </div>
+   
       <input
       className="searchbox"
         type="text"

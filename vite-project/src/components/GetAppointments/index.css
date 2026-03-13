@@ -266,14 +266,17 @@ font-size:14px;
 }
 
 .searchbox{
-  width:180px;
+  width:70%;
   height:36px;
   padding:0 12px;
-  border-radius:6px;
-  border:1px solid #ddd;
+  
+  
   font-size:14px;
   background:#fff;
   margin-left: 10px;
+}
+.iconsearch{
+  width: 30%;
 }
 
 .searchbox:focus{
