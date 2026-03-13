@@ -363,6 +363,7 @@ Settings
     <div className="search-box">
     <FiSearch className="search-icon"/>
       <input
+      className="searchbox"
         type="text"
         placeholder="Search phone (ex: 7014)"
         onChange={this.handleSearch}
