@@ -251,7 +251,7 @@ font-size:14px;
 }
 
 .search-box{
-  width: 280px;
+  width: 220px;
  
   position: relative;
   display: flex;
@@ -269,7 +269,7 @@ font-size:14px;
   width:70%;
   height:36px;
   padding:0 12px;
-  
+  border: none;
   
   font-size:14px;
   background:#fff;
