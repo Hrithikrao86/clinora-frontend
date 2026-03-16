@@ -53,7 +53,7 @@ return(
 
 <div className="settings-grid">
 
-<div className="settings-card" onClick={this.goProfile}>
+<div className="settings-card" >
 <div className="icon-circle blue">
 <FiUser size={22}/>
 </div>
