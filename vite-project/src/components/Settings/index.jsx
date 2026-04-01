@@ -7,11 +7,20 @@ import { FiLock } from "react-icons/fi"
 import { FiLogOut } from "react-icons/fi"
 import { FaHospital } from "react-icons/fa"
 import { FaStethoscope } from "react-icons/fa"
+import { FaShieldAlt, FaGift } from "react-icons/fa"
 
 class Settings extends Component {
 
 goProfile = () => {
   window.location.href="/settings/profile"
+}
+
+goInsurance = () => {
+  window.location.href = "/settings/insurance"
+}
+
+goOffers = () => {
+  window.location.href = "/settings/offers"
 }
 
 goClinic=()=>{
@@ -108,6 +117,22 @@ return(
 
 <h3>Departments</h3>
 <p>upadte/add departments</p>
+</div>
+
+<div className="settings-card" onClick={this.goInsurance}>
+  <div className="icon-circle blue">
+    <FaShieldAlt size={20}/>
+  </div>
+  <h3>Insurance</h3>
+  <p>Manage accepted insurance</p>
+</div>
+
+<div className="settings-card" onClick={this.goOffers}>
+  <div className="icon-circle purple">
+    <FaGift size={20}/>
+  </div>
+  <h3>Offers</h3>
+  <p>Manage clinic offers</p>
 </div>
 
 </div>

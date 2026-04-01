@@ -25,6 +25,8 @@ function App() {
         <Route path="/settings/doctors" element={<Doctors/>}/>
         <Route path="/settings" element={<Settings/>}/>
         <Route path='/superadmin' element={<SuperAdmin/>}/>
+        <Route path="/settings/insurance" element={<Insurance />} />
+        <Route path="/settings/offers" element={<Offers />} />
       </Routes>
     </BrowserRouter>
   )
