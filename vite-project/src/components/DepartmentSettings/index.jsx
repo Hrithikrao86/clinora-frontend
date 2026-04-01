@@ -12,6 +12,7 @@ class DepartmentSettings extends Component {
   componentDidMount() {
     this.fetchDepartments()
   }
+
 fetchDepartments = async () => {
 try{
   const response = await fetch(
@@ -33,6 +34,9 @@ try{
     allDepartments: data,
     selected: selectedData.map(d => d.dept_key) // ✅ auto-select
   })
+}
+catch{
+  console.log("error")
 }
 }
 
