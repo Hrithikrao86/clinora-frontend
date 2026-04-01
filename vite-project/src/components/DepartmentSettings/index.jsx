@@ -43,10 +43,7 @@ toggleDepartment = (key) => {
   }
 
   // If adding department and already 8 selected
-  if (selected.length >= 8) {
-    alert("You can select Maximum 8 departments")
-    return
-  }
+
 
   // Add department
   this.setState({
