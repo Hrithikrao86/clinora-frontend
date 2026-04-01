@@ -11,6 +11,8 @@ import Appointments from "./components/GetAppointments"
 import ClinicSettings from './components/ClinicSettings'
 import DepartmentSettings from './components/DepartmentSettings'
 import SuperAdmin from "./components/SuperAdmin"
+import Insurance from './components/Insurance'
+import Offers from './components/Offers'
 
 function App() {
   
