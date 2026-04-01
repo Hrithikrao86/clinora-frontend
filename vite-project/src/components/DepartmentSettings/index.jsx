@@ -12,21 +12,29 @@ class DepartmentSettings extends Component {
   componentDidMount() {
     this.fetchDepartments()
   }
+fetchDepartments = async () => {
+try{
+  const response = await fetch(
+    "https://api.clinorahq.in/api/departments/all",
+    { credentials:"include" }
+  )
 
-  fetchDepartments = async () => {
+  const data = await response.json()
 
-    const response = await fetch(
-      "https://api.clinorahq.in/api/departments/all",
-      { credentials:"include" }
-    )
+  // 🔥 Fetch selected departments also
+  const selectedRes = await fetch(
+    "https://api.clinorahq.in/api/clinic/departments",
+    { credentials:"include" }
+  )
 
-    const data = await response.json()
+  const selectedData = await selectedRes.json()
 
-    this.setState({
-      allDepartments:data
-    })
-
-  }
+  this.setState({
+    allDepartments: data,
+    selected: selectedData.map(d => d.dept_key) // ✅ auto-select
+  })
+}
+}
 
 toggleDepartment = (key) => {
 
@@ -43,7 +51,7 @@ toggleDepartment = (key) => {
   }
 
   // If adding department and already 8 selected
-
+ 
 
   // Add department
   this.setState({
