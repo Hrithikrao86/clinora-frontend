@@ -1,0 +1,98 @@
+/* Page Layout */
+.page {
+  padding: 40px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc, #eef2ff);
+  font-family: "Inter", system-ui, -apple-system;
+}
+
+/* Heading */
+.page h2 {
+  font-size: 26px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+/* Add Box */
+.add-box {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.add-box input {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.add-box input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.15);
+}
+
+/* Add Button */
+.add-box button {
+  padding: 12px 18px;
+  border: none;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: white;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.add-box button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(79, 70, 229, 0.25);
+}
+
+/* List Container */
+.list {
+  display: grid;
+  gap: 12px;
+}
+
+/* List Item Card */
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04);
+  font-size: 15px;
+  font-weight: 500;
+  color: #334155;
+  transition: all 0.2s ease;
+}
+
+.list-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+}
+
+/* Delete Button */
+.list-item button {
+  border: none;
+  background: #fee2e2;
+  color: #dc2626;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.list-item button:hover {
+  background: #dc2626;
+  color: white;
+}

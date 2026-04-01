@@ -101,14 +101,7 @@ return(
 </div>
 
 
-<div className="settings-card logout" onClick={this.logout}>
-<div className="icon-circle red">
-<FiLogOut size={22}/>
-</div>
 
-<h3>Logout</h3>
-<p>Sign out from dashboard</p>
-</div>
 
 <div className="settings-card logout" onClick={this.goDept}>
 <div className="icon-circle red">
@@ -133,6 +126,15 @@ return(
   </div>
   <h3>Offers</h3>
   <p>Manage clinic offers</p>
+</div>
+
+<div className="settings-card logout" onClick={this.logout}>
+<div className="icon-circle red">
+<FiLogOut size={22}/>
+</div>
+
+<h3>Logout</h3>
+<p>Sign out from dashboard</p>
 </div>
 
 </div>
