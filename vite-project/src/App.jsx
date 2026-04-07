@@ -13,6 +13,7 @@ import DepartmentSettings from './components/DepartmentSettings'
 import SuperAdmin from "./components/SuperAdmin"
 import Insurance from './components/Insurance'
 import Offers from './components/Offers'
+import ClinicDetails from './components/ClinicDetails'
 
 function App() {
   
@@ -29,6 +30,7 @@ function App() {
         <Route path='/superadmin' element={<SuperAdmin/>}/>
         <Route path="/settings/insurance" element={<Insurance />} />
         <Route path="/settings/offers" element={<Offers />} />
+        <Route path='/superadmin/clinic/:id' element={<ClinicDetails/>}/>
       </Routes>
     </BrowserRouter>
   )

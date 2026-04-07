@@ -6,6 +6,7 @@ class SuperAdmin extends Component{
 
 state={
   clinics:[],
+  patientCounts:{},
   showModal:false,
   name:"",
   username:"",
@@ -35,6 +36,25 @@ componentDidMount(){
   }
 }
 
+fetchPatientCounts = async () => {
+  const response = await fetch(
+    "https://api.clinorahq.in/api/superadmin/patient-counts",
+    {credentials: "include"}
+  )
+
+  if (response.ok) {
+    const data = await response.json()
+
+    // convert array → object for easy access
+    const countsMap = {}
+    data.forEach(item => {
+      countsMap[item.clinic_id] = item.total_patients
+    })
+
+    this.setState({patientCounts: countsMap})
+  }
+}
+
 fetchClinics = async ()=>{
 
   const response = await fetch(
@@ -47,10 +67,12 @@ fetchClinics = async ()=>{
 
     this.setState({
       clinics:data
-    })
+    },this,this.fetchPatientCounts)
   }
 
 }
+
+
 
 createClinic = async ()=>{
 
@@ -209,13 +231,16 @@ onClick={()=>this.setState({showModal:true})}
 <th>WhatsApp ID</th>
 <th>Subscription</th>
 <th>Action</th>
+<th>Pateints</th>
 </tr>
 </thead>
 
 <tbody>
 
 {clinics.map(clinic=>(
-<tr key={clinic.id}>
+<tr key={clinic.id} onClick={() => {
+  window.location.href = `/superadmin/clinic/${clinic.id}`
+}}>
 
 <td className="hospital-name">
 {clinic.name}
@@ -267,6 +292,7 @@ title="Delete Hospital"
 </button>
 
 </td>
+<td>{this.state.patientCounts[clinic.id] || 0}</td>
 
 </tr>
 )) }
