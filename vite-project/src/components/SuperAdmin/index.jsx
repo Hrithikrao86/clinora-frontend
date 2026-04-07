@@ -67,7 +67,7 @@ fetchClinics = async ()=>{
 
     this.setState({
       clinics:data
-    },this,this.fetchPatientCounts)
+    },this.fetchPatientCounts)
   }
 
 }
